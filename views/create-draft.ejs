@@ -1,0 +1,112 @@
+<!-- create-draft.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Draft</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/summernote/summernote-bs4.css" />
+      <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Create Draft</h1>
+      <form action="/author/create-draft" method="POST" id="createDraftForm">
+        <div class="mb-3">
+          <label for="draft-title" class="form-label">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="draft-title"
+            name="title"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="draft-subtitle" class="form-label">Subtitle:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="draft-subtitle"
+            name="subtitle"
+            required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="draft-text" class="form-label">Text:</label>
+          <textarea
+            class="summernote-editor"
+            id="draft-text"
+            name="text"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Draft</button>
+      </form>
+
+      <a href="/author/home" class="btn btn-secondary mt-3">Back to author</a>
+    </div>
+    <!-- Footer-->
+    <footer class="border-top">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <div class="small text-center text-muted fst-italic">
+              Copyright &copy; Your Website 2023
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
+    <script src="/summernote/summernote-bs4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Initialize Summernote on the textarea with the .summernote-editor class
+        $(".summernote-editor").summernote();
+      });
+
+      function createNewDraft(event) {
+        // Perform any actions or logic you want when the "Create New Draft" button is clicked
+        // For example, you can display a confirmation message or perform additional validations
+        console.log("Button draft has been clicked");
+      }
+    </script>
+    <script src="/js/scripts.js"></script>
+
+  </body>
+</html>

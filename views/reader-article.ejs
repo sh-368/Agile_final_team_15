@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title><%= article.title %></title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons-->
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google fonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+      <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="/reader/articles">My blogging App</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto py-4 py-lg-0">
+            <li class="nav-item">
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
+                >Articles</a
+              >
+            </li>
+            <li class="nav-item">
+              <button id="logoutButton" class="btn btn-primary">Logout</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page Header-->
+    <header
+      class="masthead"
+      style="background-image: url('/assets/img/articles.jpg')"
+    >
+      <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="post-heading">
+              <h1><%= article.title %></h1>
+              <h2 class="subheading">Author: <%= article.authorName %></h2>
+              <span class="meta"
+                >Posted on <%= utils.formatDate(article.publication_date)
+                %></span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Post Content-->
+    <article class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="mb-4"><%= article.content %></div>
+            <!-- "Like" button  -->
+            <button
+              id="likeButton-<%= article.article_id %>"
+              class="like-button btn btn-primary"
+              onclick="handleLikeButtonClick('<%= article.article_id %>')"
+            >
+              Like
+            </button>
+            <span
+              id="likeCount-<%= article.article_id %>"
+              class="like-count badge bg-secondary"
+              ><%= article.likes %></span
+            >
+            <br />
+            Views: <%= article.views %><br />
+            <%= console.log("views: " + article.views) %>
+            <!-- Comments Section -->
+            <h3 class="mb-3">Comments:</h3>
+            <div>
+              <% if (comments.length > 0) { %> <% comments.forEach((comment) =>
+              { %>
+              <div class="border rounded p-3 mb-3">
+                <h5 class="mb-2">
+                  <a href="/profile/<%= comment.reader_id %>"
+                    ><%= comment.authorName %></a
+                  >
+                  <!-- Add a delete button if the comment was made by the logged-in reader -->
+                  <% if (comment.reader_id === req.session.userId) { %>
+                  <button
+                    class="btn btn-sm btn-danger"
+                    onclick="deleteComment('<%= article.article_id %>', '<%= comment.comment_id %>')"
+                  >
+                    Delete
+                  </button>
+                  <% } %>
+                </h5>
+                <p><%= comment.text %></p>
+                <p class="small text-muted">
+                  <%= utils.formatDate(comment.publication_date) %>
+                </p>
+              </div>
+              <% }); %> <% } else { %>
+              <p>No comments yet.</p>
+              <% } %>
+            </div>
+
+            <h3 class="mb-3">Add a Comment:</h3>
+            <form
+              action="/reader/submit-comment"
+              method="POST"
+              id="commentForm"
+            >
+              <input
+                type="hidden"
+                name="article_id"
+                value="<%= article.article_id %>"
+              />
+              <div class="mb-3">
+                <label for="commentText" class="form-label">Comment:</label>
+                <!-- Use a simple textarea for the comment text -->
+                <textarea
+                  class="form-control"
+                  id="commentText"
+                  name="text"
+                  rows="5"
+                  placeholder="Type your comment here..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Submit Comment
+              </button>
+            </form>
+            <br />
+            <a href="/reader/articles" class="btn btn-primary"
+              >Back to articles</a
+            >
+          </div>
+        </div>
+      </div>
+    </article>
+    <!-- Footer-->
+    <footer class="border-top">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#!">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <div class="small text-center text-muted fst-italic">
+              Copyright &copy; Your Website 2023
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="/js/scripts.js"></script>
+    <!-- view functions -->
+    <script src="/js/reader-article.js"></script>
+  </body>
+</html>
