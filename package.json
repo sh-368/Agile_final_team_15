@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-db": "cat db_schema.sql | sqlite3 database.db #build anew database from the sql file",
     "clean-db": "rm database.db #remove the old database",
-    "start": "node index.js"
+    "start": "node index.js",
+    "startdev": "nodemon ./index.js"
   },
   "author": "Simon Katan",
   "license": "ISC",
@@ -25,5 +26,8 @@
   "engines": {
     "npm": ">=8.0.0",
     "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
