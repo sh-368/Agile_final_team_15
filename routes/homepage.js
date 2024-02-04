@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { isAuthenticated } = require("../authMiddleware");
+const { validateSearchQuery } = require("../public/js/validation");
+// const { isAuthenticated } = require("../authMiddleware");
 
 let sliderCounter = 1; // Initializes the counter
 
@@ -14,13 +15,13 @@ router.get("/", (req, res) => {
 });
 
 // Route for displaying search results
-router.get("/search", isAuthenticated, (req, res) => {
+router.get("/search", (req, res) => {
   // Render search results
   res.render("search");
 });
 
 // Handles search bar requests
-router.post("/search", isAuthenticated, (req, res, next) => {
+router.post("/search", (req, res, next) => {
   // Get the search query from the request body
   const searchQuery = req.body.searchQuery;
   console.log("Search Query:", searchQuery);

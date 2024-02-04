@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Author - Home Page</title>
+    <title>Search results</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons-->
     <script
@@ -48,6 +48,17 @@
           Menu
           <i class="fas fa-bars"></i>
         </button>
+        <form action="/search" method="POST" class="d-flex me-4">
+          <input
+            type="text"
+            name="searchQuery"
+            class="form-control searchbar"
+            placeholder="Search for articles"
+          />
+          <button type="submit" class="btn search">
+            <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+          </button>
+        </form>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto py-4 py-lg-0">
             <li class="nav-item">
@@ -119,7 +130,6 @@
     </div>
 
     <!-- Footer section -->
-    <!-- Footer-->
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">

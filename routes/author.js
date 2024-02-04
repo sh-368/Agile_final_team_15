@@ -6,7 +6,6 @@ const path = require("path");
 const utils = require(path.join(__dirname, "../public/js/utils"));
 const { isAuthenticated } = require("../authMiddleware");
 const { v4: uuidv4 } = require("uuid");
-const { validateSearchQuery } = require('../public/js/validation');
 
 // Route for the Author - Home Page
 // Purpose: Render the Author's Home Page with their published and draft articles.
@@ -80,31 +79,9 @@ router.get("/home", isAuthenticated, (req, res, next) => {
   });
 });
 
-// Route to create-author-settings
-// Purpose: Render the page for creating or updating the author's settings (blog title and subtitle).
-// Inputs: None (uses session data for user authentication)
-// Outputs: Rendered HTML page for creating or updating author settings
-router.get("/create-author-settings", (req, res, next) => {
-  // Retrieve the authorId from the session
-  const authorId = req.session.userId;
-  // Get the author name from the session data
-  const authorName = req.session.authorName; // Adjust this based on your session setup
-
-  // Fetch the current author settings from the database based on the authorId
-  const querySettings = "SELECT * FROM settings WHERE user_id = ?";
-  global.db.get(querySettings, [authorId], (err, settingsRow) => {
-    if (err) {
-      return next(err);
-    }
-
-    // Pass the current author settings to the view
-    res.render("create-author-settings", { settings: settingsRow, authorName });
-  });
-});
-
-// Route for creating or updating author settings
-// Purpose: Handle the form submission to create or update the author's settings (blog title, subtitle, and author name).
-// Inputs: Blog title, subtitle, and author name submitted through the form
+// Route for creating or updating profile settings
+// Purpose: Handle the form submission to create or update the profile settings (blog title, subtitle, and user name).
+// Inputs: Blog title, subtitle, and user name submitted through the form
 // Outputs: Redirects to the Author's Home Page after successful creation or update of settings
 router.post("/create-author-settings", (req, res, next) => {
   const { blogTitle, subtitle, authorName } = req.body;
@@ -119,7 +96,6 @@ router.post("/create-author-settings", (req, res, next) => {
     if (err) {
       return next(err);
     }
-
     console.log("Settings for the user:", settingsRow);
 
     // Update or insert the author settings
@@ -133,9 +109,19 @@ router.post("/create-author-settings", (req, res, next) => {
         if (err) {
           return next(err);
         }
-        console.log("Settings updated successfully");
-        // Redirect the user to the Author - Home Page after successfully updating the settings
-        res.redirect("/author/home");
+        // Update the author name in the users table
+        const updateAuthorQuery = "UPDATE users SET name = ? WHERE user_id = ?";
+        const updateAuthorValues = [authorName, authorId];
+        global.db.run(updateAuthorQuery, updateAuthorValues, (err) => {
+          if (err) {
+            return next(err);
+          }
+          // Update the authorName in the session
+          req.session.authorName = authorName;
+          console.log("Author name updated successfully");
+          // Redirect the user to the Author - Home Page after successfully creating the settings
+          res.redirect("/author/home");
+        });
       });
     } else {
       console.log("Settings will be created");
@@ -148,14 +134,15 @@ router.post("/create-author-settings", (req, res, next) => {
           return next(err);
         }
         console.log("Settings created successfully");
-
         // Update the author name in the users table
-        const updateAuthorQuery = "UPDATE users SET name = ? WHERE user_id = ?";
-        const updateAuthorValues = [authorName, authorId];
-        global.db.run(updateAuthorQuery, updateAuthorValues, (err) => {
+        const createAuthorQuery = "UPDATE users SET name = ? WHERE user_id = ?";
+        const createAuthorValues = [authorName, authorId];
+        global.db.run(createAuthorQuery, createAuthorValues, (err) => {
           if (err) {
             return next(err);
           }
+          // Update the authorName in the session
+          req.session.authorName = authorName;
           console.log("Author name updated successfully");
           // Redirect the user to the Author - Home Page after successfully creating the settings
           res.redirect("/author/home");
@@ -362,46 +349,6 @@ router.post("/publish-article/:id", isAuthenticated, (req, res, next) => {
       });
     });
   });
-});
-
-// Route for displaying search results
-router.get("/search", isAuthenticated, (req, res) => {
-  // Render search results
-  res.render("search");
-});
-
-// Handles search bar requests
-router.post("/search", isAuthenticated, (req, res, next) => {
-  // Get the search query from the request body
-  const searchQuery = req.body.searchQuery;
-  console.log("Search Query:", searchQuery);
-
-  try {
-    // Validate the search query (e.g., check for empty string or inappropriate characters)
-    validateSearchQuery(searchQuery);
-
-    // Construct the database query to search for articles based on the title, subtitle, and content
-    const query = `
-      SELECT article_id, title, subtitle, content, strftime('%Y-%m-%d %H:%M:%S', publication_date) AS publication_date, likes, views, (SELECT COUNT(*) FROM comments WHERE article_id = articles.article_id) AS comments_count
-      FROM articles
-      WHERE title LIKE ? OR subtitle LIKE ? OR content LIKE ?
-    `;
-
-    const values = [`%${searchQuery}%`, `%${searchQuery}%`, `%${searchQuery}%`];
-
-    global.db.all(query, values, (err, articles) => {
-      if (err) {
-        console.error("Database query error:", err);
-        return next(err);
-      }
-
-      // Render the search results page and pass the articles data to the template
-      res.render("search", { searchResults: articles });
-    });
-  } catch (error) {
-    console.error("Search query validation error:", error);
-    return res.status(400).json({ error: "Invalid search query" });
-  }
 });
 
 module.exports = router;
