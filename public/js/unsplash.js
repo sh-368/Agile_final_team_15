@@ -22,7 +22,7 @@ async function getRandomImage() {
     const response = await fetch(`${apiUrl}&client_id=${accessKey}`);
     const data = await response.text();
 
-    console.log("Unsplash API Response:", data);
+    // console.log("Unsplash API Response:", data);
 
     if (response.ok) {
       // If the response is successful, parse the JSON

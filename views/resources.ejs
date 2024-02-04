@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CS Student Hub</title>
+    <title>Resources</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Font Awesome icons-->
     <script
@@ -26,7 +26,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="/css/homepage.css" />
+    <link rel="stylesheet" href="/css/resources.css" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/css/styles.css" rel="stylesheet" />
   </head>
@@ -100,50 +100,6 @@
         </div>
       </div>
     </nav>
-
-    <!-- Slider section -->
-    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <% for (let i = 1; i <= nbOfSlides; i++) { %>
-        <div class="carousel-item <%= i === 1 ? 'active' : '' %>">
-          <img
-            src="/assets/img/image<%= i %>.jpg"
-            class="d-block w-100"
-            alt="Slide <%= i %>"
-          />
-          <div class="carousel-caption d-none d-md-block">
-            <h2>
-              <% if (i === 1) { %> Need a job or career advice? <% } else if (i
-              === 2) { %> Join our fast-growing community! <% } else if (i ===
-              3) { %> Check out our resources <% } %>
-            </h2>
-          </div>
-        </div>
-        <% } %>
-      </div>
-      <!-- Changes slides -->
-      <div class="control">
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExample"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </div>
-
     <div class="container">
       <!-- Latest Articles Section -->
       <div class="latest-articles-section">
@@ -152,15 +108,12 @@
         <div class="card-deck">
           <% latestArticles.forEach(article => { %>
           <div class="card">
-            <!-- Display article information -->
             <div class="card-body text-center">
               <h5 class="card-title"><%= article.title %></h5>
               <p class="card-text"><%= article.subtitle %></p>
               <p class="card-text">
                 Published on <%= article.publication_date %>
               </p>
-
-              <!-- Display the image if available -->
               <% if (article.imageUrl) { %>
               <img
                 src="<%= article.imageUrl %>"
@@ -168,8 +121,6 @@
                 alt="Article Image"
               />
               <% } %>
-
-              <!-- Add other relevant information -->
               <a href="/article/<%= article.article_id %>" class="btn read-more"
                 >Read More</a
               >
@@ -177,57 +128,87 @@
           </div>
           <% }) %>
         </div>
+        <a href="/reader/articles" class="btn explore-all"
+          >Explore All Articles</a
+        >
         <% } else { %>
         <p>No articles found.</p>
         <% } %>
       </div>
 
-      <!-- Best Study Tools Section -->
-      <div class="best-study-tools-section">
-        <h3>Best Study Tools (Based on Leading Research)</h3>
+      <!-- Latest Tutorials Section -->
+      <div class="latest-tutorials-section">
+        <h3>Latest Tutorials</h3>
+        <% if (latestTutorials && latestTutorials.length > 0) { %>
         <div class="card-deck">
-          <!-- Card 1 - Key cards "Quick test" -->
+          <% latestTutorials.forEach(tutorial => { %>
           <div class="card">
-            <img
-              src="/assets/img/keycards.jpg"
-              class="card-img-top"
-              alt="Quick Test"
-            />
             <div class="card-body text-center">
-              <h5 class="card-title">Key cards "Quick test"</h5>
-              <button class="btn read-more">GO</button>
+              <h5 class="card-title"><%= tutorial.title %></h5>
+              <p class="card-text"><%= tutorial.description %></p>
+              <img
+                src="<%= tutorial.thumbnail %>"
+                class="card-img-top"
+                alt="Tutorial Thumbnail"
+              />
+              <a
+                href="https://www.youtube.com/watch?v=<%= tutorial.videoId %>"
+                class="btn read-more"
+                >Watch Tutorial</a
+              >
             </div>
           </div>
-
-          <!-- Card 2 - Pomodoro timer -->
-          <div class="card">
-            <img
-              src="/assets/img/Pomodoro.jpg"
-              class="card-img-top"
-              alt="Pomodoro Timer"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Pomodoro Timer</h5>
-              <button class="btn read-more">Start</button>
-            </div>
-          </div>
-
-          <!-- Card 3 - Coding challenges -->
-          <div class="card">
-            <img
-              src="/assets/img/codingchallenge.jpg"
-              class="card-img-top"
-              alt="Coding Challenges"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Coding Challenges</h5>
-              <button class="btn read-more">Start</button>
-            </div>
-          </div>
+          <% }) %>
         </div>
+        <a href="/tutorials" class="btn explore-all">Explore All Tutorials</a>
+        <% } else { %>
+        <p>No tutorials found.</p>
+        <% } %>
+      </div>
+      <!-- Latest Recommended Books Section -->
+      <!-- Reduces recommended books description  -->
+      <% function truncateText(text, maxWords) { const words = text.split(' ');
+      if (words.length > maxWords) { return words.slice(0, maxWords).join(' ') +
+      '...'; } else { return text; } } %>
+      <div class="latest-recommended-books-section">
+        <h3>Latest Recommended Books</h3>
+        <% if (latestBooks && latestBooks.length > 0) { %>
+        <div class="card-deck">
+          <% latestBooks.forEach(book => { %>
+          <div class="card">
+            <div class="card-body text-center">
+              <h5 class="card-title"><%= book.title %></h5>
+              <% if (book.authors) { %>
+              <p class="card-text">Author(s): <%= book.authors %></p>
+              <% } %>
+              <p class="card-text">
+                <%= truncateText(book.description, 50) %>
+                <!-- Adjust the word count as needed -->
+              </p>
+              <% if (book.publication_date) { %>
+              <p class="card-text">Published on <%= book.publication_date %></p>
+              <% } %> <% if (book.imageUrl) { %>
+              <img
+                src="<%= book.imageUrl %>"
+                class="card-img-top"
+                alt="Book Image"
+              />
+              <% } %>
+              <a href="/book/<%= book.book_id %>" class="btn read-more"
+                >Read More</a
+              >
+            </div>
+          </div>
+          <% }) %>
+        </div>
+        <a href="/recommended-books" class="btn explore-all"
+          >Explore All Books</a
+        >
+        <% } else { %>
+        <p>No books found.</p>
+        <% } %>
       </div>
     </div>
-
     <!-- Footer-->
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
@@ -270,8 +251,7 @@
     <!-- Include Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Include the author-home.js file -->
-    <script src="/js/author-home.js"></script>
-    <script src="/js/homepage.js"></script>
+    <script src="/js/resources.js"></script>
     <script src="/js/scripts.js"></script>
   </body>
 </html>
