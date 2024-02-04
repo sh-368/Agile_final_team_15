@@ -8,6 +8,37 @@ const axios = require("axios");
 
 // Google Books API key
 const googleBooksApiKey = "AIzaSyDHALjWAHWnwwiSkPVe7aUpo0xIPo9kJV0";
+// Endpoint to get book details by ID
+router.get("/book/:bookId", async (req, res, next) => {
+  try {
+    const bookId = req.params.bookId;
+    console.log("Book ID:", bookId);
+    // Fetch book details using Google Books API
+    const googleBooksApiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
+    const response = await axios.get(googleBooksApiUrl, {
+      params: {
+        key: googleBooksApiKey,
+      },
+    });
+
+    const volumeInfo = response.data.volumeInfo;
+    const bookDetails = {
+      title: volumeInfo.title,
+      authors: volumeInfo.authors
+        ? volumeInfo.authors.join(", ")
+        : "Unknown Author",
+      description: volumeInfo.description || "No description available",
+      publishedDate: volumeInfo.publishedDate || "Unknown Published Date",
+      imageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : null,
+    };
+    console.log(bookDetails);
+
+    res.json({ success: true, bookDetails });
+  } catch (error) {
+    console.error("Error fetching book details:", error.message);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+});
 
 // Render resources page with Latest articles, tutorials, and recommended books
 router.get("/", async (req, res, next) => {

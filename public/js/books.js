@@ -17,7 +17,11 @@ async function fetchRecommendedBooks(apiKey, maxResults = 3) {
     // Extract relevant book information
     const recommendedBooks = response.data.items.map((item) => {
       const volumeInfo = item.volumeInfo;
+      // Extracting the Book ID
+      const bookId = item.id;
+      console.log(bookId);
       return {
+        bookId: bookId,
         title: volumeInfo.title,
         authors: volumeInfo.authors
           ? volumeInfo.authors.join(", ")
@@ -30,6 +34,7 @@ async function fetchRecommendedBooks(apiKey, maxResults = 3) {
       };
     });
 
+    console.log(recommendedBooks);
     return recommendedBooks;
   } catch (error) {
     console.error("Error fetching recommended books:", error.message);

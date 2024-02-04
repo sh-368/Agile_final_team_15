@@ -170,6 +170,7 @@
       <% function truncateText(text, maxWords) { const words = text.split(' ');
       if (words.length > maxWords) { return words.slice(0, maxWords).join(' ') +
       '...'; } else { return text; } } %>
+      <!-- Latest Recommended Books Section -->
       <div class="latest-recommended-books-section">
         <h3>Latest Recommended Books</h3>
         <% if (latestBooks && latestBooks.length > 0) { %>
@@ -177,10 +178,14 @@
           <% latestBooks.forEach(book => { %>
           <div class="card">
             <div class="card-body text-center">
-              <h5 class="card-title"><%= book.title %></h5>
+              <!-- Adding a hyperlink to the book page with dynamic URL -->
+              <h5 class="card-title">
+                <a href="/book/<%= book.book_id %>"><%= book.title %></a>
+              </h5>
               <% if (book.authors) { %>
               <p class="card-text">Author(s): <%= book.authors %></p>
               <% } %>
+              <!-- Using the truncateText function for book description -->
               <p class="card-text">
                 <%= truncateText(book.description, 50) %>
                 <!-- Adjust the word count as needed -->
@@ -194,7 +199,10 @@
                 alt="Book Image"
               />
               <% } %>
-              <a href="/book/<%= book.book_id %>" class="btn read-more"
+              <!-- Modify the hyperlink to dynamically construct the Google Books URL -->
+              <a
+                href="<%= `https://books.google.be/books?id=${book.bookId}&hl=&source=gbs_api` %>"
+                class="btn read-more"
                 >Read More</a
               >
             </div>
