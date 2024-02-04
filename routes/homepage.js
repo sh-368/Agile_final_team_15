@@ -1,36 +1,59 @@
 const express = require("express");
 const router = express.Router();
 const { validateSearchQuery } = require("../public/js/validation");
-// const { isAuthenticated } = require("../authMiddleware");
+const getRandomImage = require("../public/js/unsplash");
 
-let sliderCounter = 1; // Initializes the counter
+let sliderCounter = 1;
 
-// Route for the homepage
-router.get("/", (req, res) => {
+router.get("/", async (req, res, next) => {
   const nbOfSlides = 3;
-  // Increment the sliderCounter and reset to 1 if it exceeds the number of slides
   sliderCounter = (sliderCounter % nbOfSlides) + 1;
 
-  res.render("homepage", { nbOfSlides, sliderCounter });
+  const latestArticlesQuery = `
+    SELECT article_id, title, subtitle, content, strftime('%Y-%m-%d %H:%M:%S', publication_date) AS publication_date, likes, views, (SELECT COUNT(*) FROM comments WHERE article_id = articles.article_id) AS comments_count
+    FROM articles
+    ORDER BY publication_date DESC
+    LIMIT 3;`;
+
+  global.db.all(latestArticlesQuery, [], async (err, latestArticles) => {
+    if (err) {
+      console.error("Database query error:", err);
+      return next(err);
+    }
+
+    try {
+      // Fetch random images related to computer science for each article
+      const articlesWithImages = await Promise.all(
+        latestArticles.map(async (article) => {
+          const imageUrl = await getRandomImage();
+          return { ...article, imageUrl };
+        })
+      );
+
+      // Render the homepage and pass the updated latest articles data to the template
+      res.render("homepage", {
+        nbOfSlides,
+        sliderCounter,
+        latestArticles: articlesWithImages,
+      });
+    } catch (error) {
+      console.error("Error fetching random images:", error);
+      return next(error);
+    }
+  });
 });
 
-// Route for displaying search results
 router.get("/search", (req, res) => {
-  // Render search results
   res.render("search");
 });
 
-// Handles search bar requests
 router.post("/search", (req, res, next) => {
-  // Get the search query from the request body
   const searchQuery = req.body.searchQuery;
   console.log("Search Query:", searchQuery);
 
   try {
-    // Validate the search query (e.g., check for empty string or inappropriate characters)
     validateSearchQuery(searchQuery);
 
-    // Construct the database query to search for articles based on the title, subtitle, and content
     const query = `
       SELECT article_id, title, subtitle, content, strftime('%Y-%m-%d %H:%M:%S', publication_date) AS publication_date, likes, views, (SELECT COUNT(*) FROM comments WHERE article_id = articles.article_id) AS comments_count
       FROM articles
@@ -45,7 +68,6 @@ router.post("/search", (req, res, next) => {
         return next(err);
       }
 
-      // Render the search results page and pass the articles data to the template
       res.render("search", { searchResults: articles });
     });
   } catch (error) {

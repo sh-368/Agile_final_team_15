@@ -47,17 +47,10 @@
           Menu
           <i class="fas fa-bars"></i>
         </button>
-        <form action="/search" method="POST" class="d-flex me-4">
-          <input
-            type="text"
-            name="searchQuery"
-            class="form-control searchbar"
-            placeholder="Search for articles"
-          />
-          <button type="submit" class="btn search"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
-        </form>
+
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ms-auto py-4 py-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- Change ms-auto to me-auto -->
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
                 >Resources</a
@@ -68,31 +61,46 @@
                 >Tools</a
               >
             </li>
-
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
                 >Community</a
               >
             </li>
-
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
                 >Careers</a
               >
-              <!-- Add button or icon for the profile -->
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
-                ><i class="fa-solid fa-user fa-xl"></i></a
-              >
-            </li>
-            <li class="nav-item">
-              <button id="logoutButton" class="btn logout"><i class="fa-solid fa-right-from-bracket fa-xl"></i></button>
             </li>
           </ul>
+          <form action="/search" method="POST" class="d-flex me-lg-4">
+            <input
+              type="text"
+              name="searchQuery"
+              class="form-control searchbar"
+              placeholder="Search for articles"
+            />
+            <button type="submit" class="btn search">
+              <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+            </button>
+          </form>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
+                  ><i class="fa-solid fa-user fa-xl"></i
+                ></a>
+              </li>
+              <li class="nav-item">
+                <button id="logoutButton" class="btn logout">
+                  <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
+
     <!-- Slider section -->
     <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
@@ -137,54 +145,41 @@
     </div>
 
     <div class="container">
-      <!-- Latest News Section -->
-      <div class="latest-news-section">
-        <h3>Latest News</h3>
+      <!-- Latest Articles Section -->
+      <div class="latest-articles-section">
+        <h3>Latest Articles</h3>
+        <% if (latestArticles && latestArticles.length > 0) { %>
         <div class="card-deck">
-          <!-- Card 1 -->
+          <% latestArticles.forEach(article => { %>
           <div class="card">
-            <img
-              src="/assets/img/collaboration.jpg"
-              class="card-img-top"
-              alt="News 1"
-            />
+            <!-- Display article information -->
             <div class="card-body text-center">
-              <h5 class="card-title">Breaking News</h5>
-              <p class="card-text">Short summary of breaking news article.</p>
-              <a href="#" class="btn read-more">Read More</a>
-            </div>
-          </div>
-
-          <!-- Card 2 -->
-          <div class="card">
-            <img
-              src="/assets/img/computer.jpg"
-              class="card-img-top"
-              alt="News 2"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Technology Update</h5>
-              <p class="card-text">Summary of the latest technology trends.</p>
-              <a href="#" class="btn read-more">Read More</a>
-            </div>
-          </div>
-
-          <!-- Card 3 -->
-          <div class="card">
-            <img
-              src="/assets/img/home-bg.jpg"
-              class="card-img-top"
-              alt="News 3"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Sports Highlights</h5>
+              <h5 class="card-title"><%= article.title %></h5>
+              <p class="card-text"><%= article.subtitle %></p>
               <p class="card-text">
-                Recap of recent sports events and highlights.
+                Published on <%= article.publication_date %>
               </p>
-              <a href="#" class="btn read-more">Read More</a>
+
+              <!-- Display the image if available -->
+              <% if (article.imageUrl) { %>
+              <img
+                src="<%= article.imageUrl %>"
+                class="card-img-top"
+                alt="Article Image"
+              />
+              <% } %>
+
+              <!-- Add other relevant information -->
+              <a href="/article/<%= article.article_id %>" class="btn read-more"
+                >Read More</a
+              >
             </div>
           </div>
+          <% }) %>
         </div>
+        <% } else { %>
+        <p>No articles found.</p>
+        <% } %>
       </div>
 
       <!-- Best Study Tools Section -->

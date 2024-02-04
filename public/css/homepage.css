@@ -151,14 +151,41 @@ body {
     margin-top: 80%;
 }
 
-.search{
+.search {
     color: white !important;
 }
 
-.searchbar{
+.searchbar {
     margin-left: 70%important;
 }
 
 .navbar{
     background-color: #52CBFF !important;
+}
+
+/* Add this style for the card images in the latest articles section */
+.latest-articles-section .card-img-top {
+    height: 45%;
+    /* Adjust the height to your preference */
+    object-fit: cover;
+    /* Ensure the image covers the entire designated area */
+}
+
+/* Additional styles for consistent spacing and alignment */
+.latest-articles-section .card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5%;
+}
+
+.latest-articles-section .card-body {
+    flex: 1;
+}
+
+.latest-articles-section .card-text {
+    flex: 1;
+}
+
+.latest-articles-section .read-more {
+    align-self: flex-end;
 }
