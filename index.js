@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const app = express();
-const port = 3000;
+const port = 80;
 // Import the path module
 const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
