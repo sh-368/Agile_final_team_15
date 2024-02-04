@@ -133,9 +133,32 @@ body {
 }
 
 .read-more {
-    margin-left: 20%;
+    /* margin-left: 17%; */
+    background-color: #0D99FF!important;
+    color:white!important;
+}
+.read-more:hover{
+    background-color: #52CBFF !important;
 }
 
-.carousel {
-    
+.latest-news-section > h3{
+    margin-top: 7%;
+}
+
+.logout{
+    color: white!important;
+    padding:0 !important;
+    margin-top: 80%;
+}
+
+.search{
+    color: white !important;
+}
+
+.searchbar{
+    margin-left: 70%important;
+}
+
+.navbar{
+    background-color: #52CBFF !important;
 }
