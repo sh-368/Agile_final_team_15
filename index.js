@@ -10,6 +10,7 @@ const authMiddleware = require("./authMiddleware");
 const userRoutes = require("./routes/user");
 const authorRoutes = require("./routes/author");
 const readerRoutes = require("./routes/reader");
+const homepageRoutes = require("./routes/homepage");
 
 // Set up the database connection
 global.db = new sqlite3.Database("./database.db", function (err) {
@@ -39,11 +40,6 @@ app.use(
 // // Middleware to parse request bodies
 app.use(express.urlencoded({ extended: true }));
 
-// Define the route for the homepage
-app.get("/", (req, res) => {
-  res.render("homepage");
-});
-
 // Route for the Author Login Page
 app.get("/login", (req, res) => {
   res.render("user-login");
@@ -51,6 +47,9 @@ app.get("/login", (req, res) => {
 
 // Route to handle author login form submission
 app.post("/login", authMiddleware.handleLogin);
+
+// Add the reader routes middleware (No authentication required for reader routes)
+app.use("/", homepageRoutes);
 
 // Add the reader routes middleware (No authentication required for reader routes)
 app.use("/reader", readerRoutes);

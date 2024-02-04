@@ -1,0 +1,141 @@
+body {
+    background-color: #cedceb;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.blog-title {
+    color: #000;
+    font-size: 48px;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: inline-flex;
+}
+
+.author-welcome {
+    color: #000;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.action-buttons {
+    margin-top: 20px;
+}
+
+.article-list {
+    margin-top: 30px;
+}
+
+.article-item {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #93acbe;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.article-title {
+    color: #103154;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.article-details {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.article-actions {
+    margin-top: 10px;
+}
+
+.btn-edit {
+    margin-right: 10px;
+}
+
+.btn-delete {
+    margin-right: 10px;
+}
+
+.btn-back-reader {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.btn-back-reader:hover {
+    background-color: #0056b3;
+}
+
+.btn-back-author {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.btn-back-author:hover {
+    background-color: #218838;
+}
+
+.card-deck {
+    display: flex;
+    margin: 10%;
+}
+
+.card {
+    margin-right: 3%;
+    padding: 2%;
+    width: 50%;
+    height: 50%;
+}
+
+.read-more {
+    margin-left: 20%;
+}
+
+.carousel {
+    
+}

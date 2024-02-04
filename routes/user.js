@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const bcrypt = require("bcrypt");
-
 // Route for creating a user record
 // Purpose: Render the page for creating a new user record.
 // Inputs: None
@@ -70,7 +68,5 @@ router.post("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
-
-
 
 module.exports = router;
