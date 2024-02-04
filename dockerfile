@@ -10,7 +10,7 @@ WORKDIR /app
 RUN npm run build
 
 # Expose the default Node.js port (80) for HTTP traffic
-EXPOSE 3000
+EXPOSE 80
 
 # Start the Node.js application when the container starts
 CMD ["npm", "start"]
