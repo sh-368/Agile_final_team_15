@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
+require("dotenv").config();
 
-const accessKey = "qb-xolJsWoAHS80EI4cpHvfDGiJM5gFoKTc74nYWK74";
+const accessKey = process.env.UNSPLASH_API_KEY;
 const apiUrl =
   "https://api.unsplash.com/photos/random?query=computer%20science";
 

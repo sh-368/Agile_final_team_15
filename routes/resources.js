@@ -3,11 +3,13 @@ const router = express.Router();
 const getRandomImage = require("../public/js/unsplash");
 const fetchLatestTutorials = require("../public/js/tutorials");
 const fetchRecommendedBooks = require("../public/js/books");
+require("dotenv").config();
+
+const tutorialApiKey = process.env.YOUTUBE_API_KEY;
+const googleBooksApiKey = process.env.GOOGLE_BOOKS_API_KEY;
 
 const axios = require("axios");
 
-// Google Books API key
-const googleBooksApiKey = "AIzaSyDHALjWAHWnwwiSkPVe7aUpo0xIPo9kJV0";
 // Endpoint to get book details by ID
 router.get("/book/:bookId", async (req, res, next) => {
   try {
@@ -44,7 +46,6 @@ router.get("/book/:bookId", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
     // Fetch latest tutorials
-    const tutorialApiKey = "AIzaSyDWUEdwVZQM-7OXVGgBYTV600giNnuSZBA";
     const latestTutorials = await fetchLatestTutorials(tutorialApiKey);
 
     // Fetch latest articles
