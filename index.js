@@ -1,3 +1,4 @@
+const functions = require('firebase-functions');
 const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
@@ -70,3 +71,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
+
+// export express app instance. Imported by Firebase functions:
+  exports.app = functions.region('europe-west1').https.onRequest(app);
