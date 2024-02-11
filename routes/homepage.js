@@ -34,7 +34,8 @@ router.get("/", async (req, res, next) => {
       res.render("homepage", {
         nbOfSlides,
         sliderCounter,
-        latestArticles: articlesWithImages,
+        // latestArticles: articlesWithImages,
+        latestArticles
       });
     } catch (error) {
       console.error("Error fetching random images:", error);
