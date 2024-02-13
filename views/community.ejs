@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resources</title>
+    <title>Community</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon_white.ico" />
     <!-- Font Awesome icons-->
     <script
@@ -93,121 +93,6 @@
       </div>
     </nav>
     <div class="container">
-      <!-- Latest Articles Section -->
-      <div class="latest-articles-section">
-        <h3>Latest Articles</h3>
-        <% if (latestArticles && latestArticles.length > 0) { %>
-        <div class="card-deck">
-          <% latestArticles.forEach(article => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= article.title %></h5>
-              <p class="card-text"><%= article.subtitle %></p>
-              <p class="card-text">
-                Published on <%= article.publication_date %>
-              </p>
-              <% if (article.imageUrl) { %>
-              <img
-                src="<%= article.imageUrl %>"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <% } %>
-              <a href="/article/<%= article.article_id %>" class="btn read-more"
-                >Read More</a
-              >
-            </div>
-          </div>
-          <% }) %>
-        </div>
-        <a href="/reader/articles" class="btn explore-all"
-          >Explore All Articles</a
-        >
-        <% } else { %>
-        <p>No articles found.</p>
-        <% } %>
-      </div>
-
-      <!-- Latest Tutorials Section -->
-      <div class="latest-tutorials-section">
-        <h3>Latest Tutorials</h3>
-        <% if (latestTutorials && latestTutorials.length > 0) { %>
-        <div class="card-deck">
-          <% latestTutorials.forEach(tutorial => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= tutorial.title %></h5>
-              <p class="card-text"><%= tutorial.description %></p>
-              <img
-                src="<%= tutorial.thumbnail %>"
-                class="card-img-top"
-                alt="Tutorial Thumbnail"
-              />
-              <a
-                href="https://www.youtube.com/watch?v=<%= tutorial.videoId %>"
-                class="btn read-more"
-                >Watch Tutorial</a
-              >
-            </div>
-          </div>
-          <% }) %>
-        </div>
-        <a href="/tutorials" class="btn explore-all">Explore All Tutorials</a>
-        <% } else { %>
-        <p>No tutorials found.</p>
-        <% } %>
-      </div>
-      <!-- Latest Recommended Books Section -->
-      <!-- Reduces recommended books description  -->
-      <% function truncateText(text, maxWords) { const words = text.split(' ');
-      if (words.length > maxWords) { return words.slice(0, maxWords).join(' ') +
-      '...'; } else { return text; } } %>
-      <!-- Latest Recommended Books Section -->
-      <div class="latest-recommended-books-section">
-        <h3>Latest Recommended Books</h3>
-        <% if (latestBooks && latestBooks.length > 0) { %>
-        <div class="card-deck">
-          <% latestBooks.forEach(book => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <!-- Adding a hyperlink to the book page with dynamic URL -->
-              <h5 class="card-title">
-                <a href="/book/<%= book.book_id %>"><%= book.title %></a>
-              </h5>
-              <% if (book.authors) { %>
-              <p class="card-text">Author(s): <%= book.authors %></p>
-              <% } %>
-              <!-- Using the truncateText function for book description -->
-              <p class="card-text">
-                <%= truncateText(book.description, 50) %>
-                <!-- Adjust the word count as needed -->
-              </p>
-              <% if (book.publication_date) { %>
-              <p class="card-text">Published on <%= book.publication_date %></p>
-              <% } %> <% if (book.imageUrl) { %>
-              <img
-                src="<%= book.imageUrl %>"
-                class="card-img-top"
-                alt="Book Image"
-              />
-              <% } %>
-              <!-- Modify the hyperlink to dynamically construct the Google Books URL -->
-              <a
-                href="<%= `https://books.google.be/books?id=${book.bookId}&hl=&source=gbs_api` %>"
-                class="btn read-more"
-                >Read More</a
-              >
-            </div>
-          </div>
-          <% }) %>
-        </div>
-        <a href="/recommended-books" class="btn explore-all"
-          >Explore All Books</a
-        >
-        <% } else { %>
-        <p>No books found.</p>
-        <% } %>
-      </div>
     </div>
     <!-- Footer-->
     <footer class="border-top">

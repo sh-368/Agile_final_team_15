@@ -13,6 +13,9 @@ const authorRoutes = require("./routes/author");
 const readerRoutes = require("./routes/reader");
 const homepageRoutes = require("./routes/homepage");
 const resourcesRoutes = require("./routes/resources");
+const toolsRoutes = require("./routes/tools");
+const communityRoutes = require("./routes/community");
+const careersRoutes = require("./routes/careers");
 
 // Set up the database connection
 global.db = new sqlite3.Database("./database.db", function (err) {
@@ -50,16 +53,25 @@ app.get("/login", (req, res) => {
 // Route to handle author login form submission
 app.post("/login", authMiddleware.handleLogin);
 
-// Add the resources routes middleware (No authentication required for resources routes)
+// Add the resources routes middleware (No authentication required)
 app.use("/resources", resourcesRoutes);
 
-// Add the homepage routes middleware (No authentication required for homepage routes)
+// Add the tools routes middleware (No authentication required)
+app.use("/tools", toolsRoutes);
+
+// Add the Community routes middleware (No authentication required)
+app.use("/community", communityRoutes);
+
+// Add the Community routes middleware (No authentication required)
+app.use("/careers", careersRoutes);
+
+// Add the homepage routes middleware (No authentication required)
 app.use("/", homepageRoutes);
 
-// Add the reader routes middleware (No authentication required for reader routes)
+// Add the reader routes middleware (No authentication required)
 app.use("/reader", readerRoutes);
 
-// Add the user routes middleware (No authentication required for user routes)
+// Add the user routes middleware (No authentication required)
 app.use("/user", userRoutes);
 
 // Add the author routes middleware (Apply the isAuthenticated middleware to protect author routes)
