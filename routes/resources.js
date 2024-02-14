@@ -5,8 +5,8 @@ const fetchLatestTutorials = require("../public/js/tutorials");
 const fetchRecommendedBooks = require("../public/js/books");
 require("dotenv").config();
 
-const tutorialApiKey = process.env.YOUTUBE_API_KEY;
-const googleBooksApiKey = process.env.GOOGLE_BOOKS_API_KEY;
+const tutorialApiKey = process.env.GOOGLE_API_KEY;
+const googleBooksApiKey = process.env.GOOGLE_API_KEY;
 
 const axios = require("axios");
 

@@ -39,6 +39,12 @@ body {
     color: #333;
 }
 
+.nav-logo {
+    width: 5rem;
+    height: 5rem;
+    object-fit: scale-down;
+}
+
 .btn {
     display: inline-block;
     padding: 10px 20px;
