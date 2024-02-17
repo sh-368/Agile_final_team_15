@@ -14,4 +14,4 @@ RUN npm install && npm run build-db
 EXPOSE 443
 
 # Start the Node.js application when the container starts
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
