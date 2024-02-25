@@ -8,6 +8,7 @@
     "build": "npm install",
     "build-db": "cat db_schema.sql | sqlite3 database.db #build anew database from the sql file",
     "clean-db": "rm database.db #remove the old database",
+    "rebuild-db": "npm run clean-db && npm run build-db",
     "start": "node index.js",
     "startdev": "nodemon ./index.js",
     "shell": "firebase functions:shell",

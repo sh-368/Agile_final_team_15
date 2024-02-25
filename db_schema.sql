@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     role TEXT NOT NULL,
+    password TEXT NOT NULL,
     auth_key TEXT NOT NULL
 );
 
@@ -71,9 +72,9 @@ CREATE TABLE IF NOT EXISTS drafts (
 );
 
 -- Insert some default data for testing (optional)
-INSERT INTO users (name, role, auth_key) VALUES
-    ('Simon Star', 'author', 'some_auth_key_for_author'),
-    ('John Doe', 'reader', 'some_auth_key_for_reader');
+INSERT INTO users (name, role, password, auth_key) VALUES
+    ('Simon Star', 'author', 'sample_password', 'some_auth_key_for_author'),
+    ('John Doe', 'reader', 'sample_password', 'some_auth_key_for_reader');
 
 INSERT INTO settings (user_id, blogTitle, subtitle) VALUES
     (1, 'My Blog', 'A blog about interesting things');
