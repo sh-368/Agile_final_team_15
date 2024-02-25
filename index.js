@@ -36,7 +36,6 @@ app.set("view engine", "ejs");
 // Middleware for session management
 app.use(
   session({
-    name: ""
     secret: ['nhCL6aPj$eGwNp8mzDQFKf', 
     'hnWH+dpVU$BczeR4Q7guf5',
      'fhR!+z7WjcTnpUGD4@ZQ=^',
@@ -57,7 +56,10 @@ app.use(
           secure: false,
         
         // Expires cookies every 12 hours (Note: default is 400 days)
-          maxAge: 43200000
+          maxAge: 43200000,
+
+        // Sets default as no user logged in
+          isAuthenticated: false
         },
   })
 );

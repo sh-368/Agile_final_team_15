@@ -86,11 +86,15 @@
                   ><i class="fa-solid fa-user fa-xl"></i
                 ></a>
               </li>
-              <li class="nav-item">
-                <button id="logoutButton" class="btn logout">
-                  <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-                </button>
-              </li>
+              <!-- Only display Logout icon if user is not logged in -->
+              <% if (userLoggedIn == true) 
+              { %> 
+                <li class="nav-item">
+                  <button id="logoutButton" class="btn logout">
+                    <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+                  </button>
+                </li>
+                <% } %>
             </ul>
           </div>
         </div>

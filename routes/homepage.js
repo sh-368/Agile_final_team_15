@@ -30,13 +30,16 @@ router.get("/", async (req, res, next) => {
         })
       );
 
+      const userLoggedIn = req.session.isAuthenticated;
+
       // Render the homepage and pass the updated latest articles data to the template
-      res.render("homepage", {
-        nbOfSlides,
-        sliderCounter,
-        // latestArticles: articlesWithImages,
-        latestArticles
-      });
+        res.render("homepage", {
+          userLoggedIn,
+          nbOfSlides,
+          sliderCounter,
+          // latestArticles: articlesWithImages,
+          latestArticles
+        });
     } catch (error) {
       console.error("Error fetching random images:", error);
       return next(error);
