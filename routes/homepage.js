@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { validateSearchQuery } = require("../public/js/validation");
 const getRandomImage = require("../public/js/unsplash");
+const authMiddleware = require("../authMiddleware");
 
 let sliderCounter = 1;
 
@@ -30,7 +31,9 @@ router.get("/", async (req, res, next) => {
         })
       );
 
-      const userLoggedIn = req.session.isAuthenticated;
+      let userLoggedIn = authMiddleware.isAuthenticatedMisc(req.session.cookie.isAuthenticated);
+      console.log(userLoggedIn)
+      console.log(req.session)
 
       // Render the homepage and pass the updated latest articles data to the template
         res.render("homepage", {

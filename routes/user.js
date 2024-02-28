@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 // Route for creating a user record
 // Purpose: Render the page for creating a new user record.
 // Inputs: None
@@ -13,6 +14,7 @@ router.get("/create-user-record", (req, res) => {
 // Inputs: User name, role, and password submitted through the form
 // Outputs: Redirects to the appropriate page after successfully adding the user record
 router.post("/create-user-record", (req, res, next) => {
+
   console.log("Received a request to create a new user.");
   const { name, role, password } = req.body;
   console.log("Form data:", name, role, password);
@@ -27,28 +29,34 @@ router.post("/create-user-record", (req, res, next) => {
         res.send("User already exists");
       } else {
         // User does not exist, proceed with insertion
-
+        console.log("User does not exist. Proceeding to creation")
         // Hash the password using bcrypt before inserting it into the database
-        const hashedPassword = bcrypt.hashSync(password, 10);
-
-        global.db.run(
-          "INSERT INTO users (name, role, auth_key) VALUES (?, ?, ?);",
-          [name, role, hashedPassword],
-          function (err) {
-            if (err) {
-              console.error("Error inserting new user:", err);
-              next(err); // Send the error to the error handler
-            } else {
-              const userId = this.lastID;
-              if (role === "author") {
-                // Redirect to the create-author-settings view if the role is "author"
-                res.redirect("/author/create-author-settings");
+        hashPlaintext(password, 10).then((hash) => {
+          console.log(hash);
+          const { name, role, password } = req.body;
+          global.db.run(
+            "INSERT INTO users (name, role, password) VALUES (?, ?, ?);",
+            [name, role, hash],
+            function (err) {
+              if (err) {
+                console.error("Error inserting new user:", err);
+                next(err); // Send the error to the error handler
               } else {
-                res.redirect("/reader/home");
+                const userId = this.lastID;
+                if (role === "author") {
+                  // Redirect to the create-author-settings view if the role is "author"
+                  res.redirect("/author/create-author-settings");
+                } else {
+                  res.redirect("/reader/home");
+                }
               }
             }
-          }
-        );
+          );
+
+
+        });
+        
+
       }
     }
   });
@@ -68,5 +76,13 @@ router.post("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
+
+async function hashPlaintext(plaintextPassword, saltRounds){
+
+  const hash = await bcrypt.hash(plaintextPassword, saltRounds);
+  // console.log(hash)
+  return hash;
+
+}
 
 module.exports = router;

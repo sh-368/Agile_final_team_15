@@ -16,8 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     role TEXT NOT NULL,
-    password TEXT NOT NULL,
-    auth_key TEXT NOT NULL
+    password TEXT NOT NULL
 );
 
 -- Create the settings table as a child table of users
@@ -72,9 +71,9 @@ CREATE TABLE IF NOT EXISTS drafts (
 );
 
 -- Insert some default data for testing (optional)
-INSERT INTO users (name, role, password, auth_key) VALUES
-    ('Simon Star', 'author', 'sample_password', 'some_auth_key_for_author'),
-    ('John Doe', 'reader', 'sample_password', 'some_auth_key_for_reader');
+INSERT INTO users (name, role, password) VALUES
+    ('Simon Star', 'author', 'sample_password'),
+    ('John Doe', 'reader', 'sample_password');
 
 INSERT INTO settings (user_id, blogTitle, subtitle) VALUES
     (1, 'My Blog', 'A blog about interesting things');
