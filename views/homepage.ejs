@@ -81,16 +81,26 @@
           </form>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <!-- Change User Profile Icon, dependant if user is logged in or not -->
+              <% if (userLoggedIn === false) 
+              { %> 
               <li class="nav-item">
-                <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
-                  ><i class="fa-solid fa-user fa-xl"></i
-                ></a>
+                <a class="nav-link user-profile px-lg-3 py-3 py-lg-4" href="/login">
+                  <i class="fa-solid fa-user-plus fa-2xl"></i>
+                </a>
               </li>
-              <li class="nav-item">
-                <button id="logoutButton" class="btn logout">
-                  <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-                </button>
-              </li>
+              <% } %>
+
+              <!-- Only display Logout icon if user is not logged in -->
+              <% if (userLoggedIn) 
+              { %> 
+                <li class="nav-item">
+                  <button id="logoutButton" class="btn logout">
+                    <i class="fa-solid fa-right-from-bracket fa-xl"></i>
+                  </button>
+                </li>
+                <% } %>
             </ul>
           </div>
         </div>

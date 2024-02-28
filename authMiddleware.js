@@ -1,12 +1,21 @@
 const bcrypt = require("bcrypt");
 
-// Middleware to check if the user is authenticated
+// Middleware to check if the user is authenticated (route protection)
 const isAuthenticated = (req, res, next) => {
   if (req.session.isAuthenticated) {
     next();
   } else {
     res.redirect("/login");
     console.log("Could not login");
+  }
+};
+
+// Middleware to check if the user is authenticated (misc check)
+const isAuthenticatedMisc = (cookieAuthValue) => {
+  if (cookieAuthValue) {
+    return true;
+  } else {
+    return false;
   }
 };
 
@@ -27,7 +36,7 @@ const handleLogin = (req, res) => {
       console.log("Provided Password:", password);
       console.log("Stored Hashed Password:", user.auth_key);
       // User found, check if the provided password matches the stored hashed password
-      if (bcrypt.compareSync(password, user.auth_key)) {
+      if (bcrypt.compareSync(password, user.password)) {
         console.log("Password Matched!");
         // Password matches, user is authenticated
         req.session.isAuthenticated = true;
@@ -60,4 +69,4 @@ const handleLogin = (req, res) => {
   });
 };
 
-module.exports = { isAuthenticated, handleLogin };
+module.exports = { isAuthenticated, handleLogin, isAuthenticatedMisc };

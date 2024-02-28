@@ -2,8 +2,10 @@ const functions = require('firebase-functions');
 const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
-const app = express();
-const port = process.env.PORT || 443;
+// Instantiate instance of Express app:
+  const app = express();
+// Set config for Express app  
+  const port = process.env.PORT || 443;
 // Import the path module
 const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
@@ -34,11 +36,31 @@ app.set("view engine", "ejs");
 // Middleware for session management
 app.use(
   session({
-    secret: "your-secret-key",
-    resave: false,
-    saveUninitialized: true,
-    // Set to true if using HTTPS
-    cookie: { secure: false },
+    secret: ['nhCL6aPj$eGwNp8mzDQFKf', 
+    'hnWH+dpVU$BczeR4Q7guf5',
+     'fhR!+z7WjcTnpUGD4@ZQ=^',
+     'azNR*Yke#=tpJ8C62!mqgB',
+     'fr*=9SF!4yPtBTq8h5Qapc'],
+    // Save the session object in session store if not modified in current request:
+      resave: false,
+    
+    // New session objects that are not yet modified. 
+    // This will save any sessions even if not logged in. 
+    // *Check Legal Cookie Policy per region
+      saveUninitialized: true,
+
+    // Cookie object config:
+      cookie: { 
+        // Encrypts session object (the cookie)
+        // Set to true if using HTTPS
+          secure: false,
+        
+        // Expires cookies every 12 hours (Note: default is 400 days)
+          maxAge: 43200000,
+
+        // Sets default as no user logged in
+          isAuthenticated: false
+        },
   })
 );
 
