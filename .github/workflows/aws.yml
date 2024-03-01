@@ -32,9 +32,12 @@ on:
 
 env:
   ECS_TASK_DEFINITION: .aws/node_app_task_definition.json # set this to the path to your Amazon ECS task definition
-                                             # file, e.g. .aws/task-definition.json
-  CONTAINER_NAME: asp-final        # set this to the name of the container in the
-                                               # containerDefinitions section of your task definition
+  ECS_CLUSTER: asp-final-cluster
+  ECS_SERVICE: asp-final-service-poc
+  AWS_REGION: eu-west-2
+  AWS_ECR_REPO: = 654654283834.dkr.ecr.eu-west-2.amazonaws.com/asp-team15-final
+  CONTAINER_NAME: asp-final       
+                                             
 permissions:
   contents: read
 
