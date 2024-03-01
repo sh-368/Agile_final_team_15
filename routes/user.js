@@ -14,7 +14,7 @@ router.get("/create-user-record", (req, res) => {
 // Inputs: User name, role, and password submitted through the form
 // Outputs: Redirects to the appropriate page after successfully adding the user record
 router.post("/create-user-record", (req, res, next) => {
-
+  
   console.log("Received a request to create a new user.");
   const { name, role, password } = req.body;
   console.log("Form data:", name, role, password);
@@ -23,7 +23,6 @@ router.post("/create-user-record", (req, res, next) => {
     if (err) {
       next(err); // Send the error to the error handler
     } else {
-      console.log("Query result:", row);
       if (row) {
         // User already exists, handle accordingly
         res.send("User already exists");
@@ -31,9 +30,11 @@ router.post("/create-user-record", (req, res, next) => {
         // User does not exist, proceed with insertion
         console.log("User does not exist. Proceeding to creation")
         // Hash the password using bcrypt before inserting it into the database
-        hashPlaintext(password, 10).then((hash) => {
+
+        bcrypt.hash(password, 10, function(err, hash) {
+          // Store hash in your password DB.
           console.log(hash);
-          const { name, role, password } = req.body;
+          
           global.db.run(
             "INSERT INTO users (name, role, password) VALUES (?, ?, ?);",
             [name, role, hash],
@@ -42,6 +43,7 @@ router.post("/create-user-record", (req, res, next) => {
                 console.error("Error inserting new user:", err);
                 next(err); // Send the error to the error handler
               } else {
+                console.log("successfully created user!")
                 const userId = this.lastID;
                 if (role === "author") {
                   // Redirect to the create-author-settings view if the role is "author"
@@ -53,10 +55,8 @@ router.post("/create-user-record", (req, res, next) => {
             }
           );
 
-
         });
         
-
       }
     }
   });
@@ -76,13 +76,5 @@ router.post("/logout", (req, res) => {
     res.redirect("/login");
   });
 });
-
-async function hashPlaintext(plaintextPassword, saltRounds){
-
-  const hash = await bcrypt.hash(plaintextPassword, saltRounds);
-  // console.log(hash)
-  return hash;
-
-}
 
 module.exports = router;
