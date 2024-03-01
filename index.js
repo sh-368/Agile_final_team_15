@@ -36,11 +36,13 @@ app.set("view engine", "ejs");
 // Middleware for session management
 app.use(
   session({
+    
     secret: ['nhCL6aPj$eGwNp8mzDQFKf', 
     'hnWH+dpVU$BczeR4Q7guf5',
      'fhR!+z7WjcTnpUGD4@ZQ=^',
      'azNR*Yke#=tpJ8C62!mqgB',
      'fr*=9SF!4yPtBTq8h5Qapc'],
+
     // Save the session object in session store if not modified in current request:
       resave: false,
     

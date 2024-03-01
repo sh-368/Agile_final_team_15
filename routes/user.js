@@ -45,12 +45,7 @@ router.post("/create-user-record", (req, res, next) => {
               } else {
                 console.log("successfully created user!")
                 const userId = this.lastID;
-                if (role === "author") {
-                  // Redirect to the create-author-settings view if the role is "author"
-                  res.redirect("/author/create-author-settings");
-                } else {
-                  res.redirect("/reader/home");
-                }
+                res.redirect("/login");
               }
             }
           );
