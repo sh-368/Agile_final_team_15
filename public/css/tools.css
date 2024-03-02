@@ -1,4 +1,9 @@
 #timer {
     font-size: 48px;
     margin-top: 50px;
+    background-color: tomato;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    display: inline-block;
 }
