@@ -52,7 +52,6 @@ class articlesController {
                 title: articlesData[i].title,
                 subtitle: articlesData[i].snippet,
                 content: articlesData[i].link,
-                publicationDate: "",
                 likes: 0,
                 views: 0,
                 commentCount: 0,
