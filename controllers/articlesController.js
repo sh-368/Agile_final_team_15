@@ -50,7 +50,7 @@ class articlesController {
         for (let i=0; i < articlesData.length; i++){
             let article = {    
                 title: articlesData[i].title,
-                subtitle: articlesData[i].title,
+                subtitle: articlesData[i].snippet,
                 content: articlesData[i].link,
                 publicationDate: "",
                 likes: 0,
