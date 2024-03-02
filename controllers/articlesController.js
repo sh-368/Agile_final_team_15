@@ -17,10 +17,9 @@ class articlesController {
             + '&' + customSearchGoogleQuery
             + '&' + customSearchGoogleResultQuantity
             ); 
-        // console.log(searchResults.data.items);    
+        console.log(searchResults.data.items);    
         return this.#constructArticlesObject(searchResults.data.items);
-        
-        // console.log(searchResults.data.items);    
+     
     }
 
     static #constructArticlesObject(articlesData){
@@ -35,7 +34,8 @@ class articlesController {
                 likes: 0,
                 views: 0,
                 commentCount: 0,
-                imageUrl: ""
+                link: articlesData[i].link,
+                imageUrl: articlesData[i].pagemap.cse_thumbnail[0].src
                 }
                 console.log(article);
             articlesList.push(article);
