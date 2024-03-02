@@ -220,3 +220,15 @@ body {
 .explore-all:hover {
     background-color: #0056b3;
 }
+
+.main-articles-section
+{
+    display: grid;
+    flex-flow: row wrap;
+    margin: 10%;
+    align-items: center;
+    margin-right: 3%;
+    padding: 2%;
+    width: 50%;
+    height: 50%;
+}

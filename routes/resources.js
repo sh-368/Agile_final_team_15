@@ -46,7 +46,7 @@ router.get("/book/:bookId", async (req, res, next) => {
 // Render resources page with Latest articles, tutorials, and recommended books
 router.get("/", async (req, res, next) => {
   try {
-
+    
     // Fetch latest tutorials
     const latestTutorials = await fetchLatestTutorials(tutorialApiKey);
 
@@ -86,7 +86,7 @@ router.get("/", async (req, res, next) => {
           })
         );
 
-        const latestArticlesGoogle = await articlesController.getArticles("tech", 3);
+        const latestArticlesGoogle = await articlesController.getArticles("tech", 3, 60);
 
         // Render the resources page and pass all the data to the template
         res.render("resources", {

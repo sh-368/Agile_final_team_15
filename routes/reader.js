@@ -4,6 +4,7 @@ const router = express.Router();
 const { isAuthenticated } = require("../authMiddleware");
 const path = require("path");
 const utils = require(path.join(__dirname, "../public/js/utils"));
+const articlesController = require("../controllers/articlesController");
 
 // Route for saving an article to the reader's saved articles
 router.post("/save-article/:id", isAuthenticated, (req, res) => {
@@ -85,21 +86,8 @@ router.get("/home", isAuthenticated, (req, res, next) => {
 // Purpose: Render the Reader's Published Articles Page with a list of all published articles.
 // Inputs: None (uses session data for user authentication)
 // Outputs: Rendered HTML page with the list of published articles
-router.get("/articles", (req, res, next) => {
-  // Fetch all published articles from the database
-  const queryPublishedArticles = "SELECT * FROM articles";
+router.get("/articles", articlesController.loadArticlesPage);
 
-  global.db.all(queryPublishedArticles, (err, publishedArticles) => {
-    if (err) {
-      console.error("Error fetching published articles:", err);
-      // Handle the error, e.g., render an error page or display an error message
-      res.status(500).send("Internal Server Error");
-      return;
-    }
-    // Render the Reader - Published Articles template and pass the published articles data
-    res.render("reader-articles", { publishedArticles });
-  });
-});
 // Route for the Reader - Article Page
 // Purpose: Render the Reader's Article Page with details of a specific article.
 // Inputs: Article ID from the URL parameter and session data for user authentication

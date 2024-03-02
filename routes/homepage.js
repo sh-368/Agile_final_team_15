@@ -3,6 +3,7 @@ const router = express.Router();
 const { validateSearchQuery } = require("../public/js/validation");
 const getRandomImage = require("../public/js/unsplash");
 const authMiddleware = require("../authMiddleware");
+const resourcesController = require("../controllers/resourcesController");
 
 let sliderCounter = 1;
 

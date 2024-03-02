@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch");
 require("dotenv").config();
 
 const accessKey = process.env.UNSPLASH_API_KEY;
