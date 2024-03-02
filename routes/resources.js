@@ -121,4 +121,20 @@ router.get("/tutorials", async (req, res) => {
   }
 });
 
+// Route to fetch latest tutorials
+router.get("/recommended-books", async (req, res) => {
+  try {
+    // YouTube API Key
+    const apiKey = "AIzaSyDWUEdwVZQM-7OXVGgBYTV600giNnuSZBA";
+
+    // Call the function to fetch latest tutorials
+    const latestTutorials = await fetchLatestTutorials(apiKey, 3);
+
+    res.json({ success: true, latestTutorials });
+  } catch (error) {
+    console.error("Error fetching latest tutorials:", error.message);
+    res.status(500).json({ success: false, error: "Internal Server Error" });
+  }
+});
+
 module.exports = router;
