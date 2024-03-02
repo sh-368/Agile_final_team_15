@@ -3,7 +3,7 @@ const router = express.Router();
 const { validateSearchQuery } = require("../public/js/validation");
 const getRandomImage = require("../public/js/unsplash");
 const authMiddleware = require("../authMiddleware");
-const resourcesController = require("../controllers/resourcesController");
+const articlesController = require("../controllers/articlesController");
 
 let sliderCounter = 1;
 
@@ -36,13 +36,15 @@ router.get("/", async (req, res, next) => {
       console.log(userLoggedIn)
       console.log(req.session)
 
+      const latestArticlesGoogle = await articlesController.getArticles("*", 3, 60);
+
       // Render the homepage and pass the updated latest articles data to the template
         res.render("homepage", {
           userLoggedIn,
           nbOfSlides,
           sliderCounter,
           // latestArticles: articlesWithImages,
-          latestArticles
+          latestArticlesGoogle
         });
     } catch (error) {
       console.error("Error fetching random images:", error);
