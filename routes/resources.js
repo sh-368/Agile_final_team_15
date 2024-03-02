@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const articlesController = require("../controllers/articlesController");
 const getRandomImage = require("../public/js/unsplash");
 const fetchLatestTutorials = require("../public/js/tutorials");
 const fetchRecommendedBooks = require("../public/js/books");
@@ -46,9 +47,7 @@ router.get("/book/:bookId", async (req, res, next) => {
 router.get("/", async (req, res, next) => {
   try {
 
-    console.log('hit');
     // Fetch latest tutorials
-    console.log(tutorialApiKey);
     const latestTutorials = await fetchLatestTutorials(tutorialApiKey);
 
     // Fetch latest articles
@@ -63,7 +62,7 @@ router.get("/", async (req, res, next) => {
         console.error("Database query error:", err);
         return next(err);
       }
-
+      // console.log(latestArticles);
       try {
         // Fetch random images related to computer science for each article
         const articlesWithImages = await Promise.all(
@@ -72,7 +71,7 @@ router.get("/", async (req, res, next) => {
             return { ...article, imageUrl };
           })
         );
-
+        // console.log(latestArticles);
         // Fetch recommended books with more details
         const recommendedBooks = await fetchRecommendedBooks(
           googleBooksApiKey,
@@ -87,9 +86,11 @@ router.get("/", async (req, res, next) => {
           })
         );
 
+        const latestArticlesGoogle = await articlesController.getArticles("tech", 3);
+
         // Render the resources page and pass all the data to the template
         res.render("resources", {
-          latestArticles: articlesWithImages,
+          latestArticlesGoogle,
           latestTutorials,
           latestBooks: booksWithImages,
         });
