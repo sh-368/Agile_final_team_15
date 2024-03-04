@@ -168,7 +168,7 @@ body {
     background-color: #52CBFF !important;
 }
 
-.latest-articles-section{
+/* .latest-articles-section{
     background-color: #F0F9FF;
 }
 .latest-tutorials-section {
@@ -177,7 +177,7 @@ body {
 
 .latest-recommended-books-section {
     background-color: #F0F9FF;
-}
+} */
 
 .latest-articles-section h3{
     margin-top: 10%;
@@ -231,4 +231,12 @@ body {
     padding: 2%;
     width: 50%;
     height: 50%;
+}
+
+.section-day {
+    background-color: #fff;
+}
+
+.section-night {
+    background-color: #424242;
 }

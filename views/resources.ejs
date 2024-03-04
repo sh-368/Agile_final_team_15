@@ -27,8 +27,17 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/css/resources.css" />
+    <link rel="stylesheet" href="/css/homepage.css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+      <link href="/css/styles.css" rel="stylesheet" />
+    <!-- Colorblind Script -->
+      <script defer
+        src="js/colorblind.js"
+      ></script>
+    <!-- Night Mode Script -->
+      <script defer
+        src="js/night-mode.js"
+      ></script>
   </head>
   <body>
     <!-- Navigation-->
@@ -81,24 +90,45 @@
           </form>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+              <!-- Change User Profile Icon, dependant if user is logged in or not -->
+              <% if (userLoggedIn === false) 
+              { %> 
               <li class="nav-item">
-                <a class="nav-link px-lg-3 py-3 py-lg-4" href="/reader/articles"
-                  ><i class="fa-solid fa-user fa-xl"></i
-                ></a>
+                <a class="nav-link user-profile px-lg-3 py-3 py-lg-4" href="/login">
+                  <i class="fa-solid fa-user-plus fa-2xl"></i>
+                </a>
               </li>
-              <li class="nav-item">
-                <button id="logoutButton" class="btn logout">
-                  <i class="fa-solid fa-right-from-bracket fa-xl"></i>
-                </button>
-              </li>
+              <% } %>
+
+              <!-- Only display Logout icon if user is not logged in -->
+              <% if (userLoggedIn) 
+              { %> 
+                <li class="nav-item">
+                  <button id="logoutButton" class="btn logout">
+                    <i class="fa-solid fa-right-from-bracket fa-2xl text-light"></i>
+                  </button>
+                </li>
+                <% } %>
+                <li>
+                  <button id="colorblindToggle" class="btn mode-toggle">
+                    <i class="fa-brands fa-accessible-icon fa-2xl text-light" ></i>
+                  </button>
+                </li>
+                <li>
+                  <button id="nightModeToggle" class="btn mode-toggle">
+                    <i class="fas fa-sun fa-2xl text-light" ></i>
+                  </button>
+                </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
+
     <div class="container">
       <!-- Latest Articles Section -->
-      <div class="latest-articles-section">
+      <div class="latest-articles-section page-section">
         <h3>Latest Articles</h3>
         <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
         <div class="card-deck">
@@ -127,7 +157,7 @@
       </div>
 
       <!-- Latest Tutorials Section -->
-      <div class="latest-tutorials-section">
+      <div class="latest-tutorials-section page-section">
         <h3>Latest Tutorials</h3>
         <% if (latestTutorials && latestTutorials.length > 0) { %>
         <div class="card-deck">
@@ -155,13 +185,14 @@
         <p>No tutorials found.</p>
         <% } %>
       </div>
+
       <!-- Latest Recommended Books Section -->
       <!-- Reduces recommended books description  -->
       <% function truncateText(text, maxWords) { const words = text.split(' ');
       if (words.length > maxWords) { return words.slice(0, maxWords).join(' ') +
       '...'; } else { return text; } } %>
       <!-- Latest Recommended Books Section -->
-      <div class="latest-recommended-books-section">
+      <div class="latest-recommended-books-section page-section">
         <h3>Latest Recommended Books</h3>
         <% if (latestBooks && latestBooks.length > 0) { %>
         <div class="card-deck">

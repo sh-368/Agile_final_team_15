@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const authMiddleware = require("../authMiddleware");
 const articlesController = require("../controllers/articlesController");
 const getRandomImage = require("../public/js/unsplash");
 const fetchLatestTutorials = require("../public/js/tutorials");
@@ -86,10 +87,15 @@ router.get("/", async (req, res, next) => {
           })
         );
 
+        // Check if user is logged in
+          let userLoggedIn = authMiddleware.isAuthenticatedMisc(req.session.cookie.isAuthenticated);
+
+        // Get articles 
         const latestArticlesGoogle = await articlesController.getArticles("tech", 3, 60);
 
         // Render the resources page and pass all the data to the template
         res.render("resources", {
+          userLoggedIn,
           latestArticlesGoogle,
           latestTutorials,
           latestBooks: booksWithImages,
