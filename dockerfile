@@ -6,6 +6,12 @@ RUN mkdir -p /app
 COPY . /app
 WORKDIR /app
 
+# Get and set env vars from build parameters
+ARG GOOGLE_API_KEY
+ENV GOOGLE_API_KEY $GOOGLE_API_KEY
+ARG GOOGLE_SEARCH_ENGINE_ID
+ENV GOOGLE_SEARCH_ENGINE_ID $GOOGLE_SEARCH_ENGINE_ID
+
 # Install any needed packages specified in package.json
 RUN apt-get update && apt-get install sqlite3
 RUN npm install && npm run build-db
