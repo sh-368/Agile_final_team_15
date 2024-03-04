@@ -129,7 +129,7 @@ body {
 }
 
 .card-deck {
-    display: flex;
+    /* display: flex; */
     margin: 10%;
 }
 
@@ -222,4 +222,8 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#tools{
+    display: flex;
 }
