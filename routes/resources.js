@@ -63,7 +63,6 @@ router.get("/", async (req, res, next) => {
         console.error("Database query error:", err);
         return next(err);
       }
-      // console.log(latestArticles);
       try {
         // Fetch random images related to computer science for each article
         const articlesWithImages = await Promise.all(

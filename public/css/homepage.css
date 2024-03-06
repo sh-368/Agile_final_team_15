@@ -128,14 +128,10 @@ body {
     background-color: #218838;
 }
 
-.card-deck {
-    /* display: flex; */
-    margin: 10%;
-}
 
 .card {
     margin-right: 3%;
-    padding: 2%;
+    padding: 3%;
     width: 50%;
     height: 50%;
 }
@@ -144,6 +140,8 @@ body {
     /* margin-left: 17%; */
     background-color: #0D99FF!important;
     color:white!important;
+    padding: 2%;
+    margin-top: 10%;
 }
 .read-more:hover{
     background-color: #52CBFF !important;
@@ -174,16 +172,17 @@ body {
 /* Add this style for the card images in the latest articles section */
 .latest-articles-section .card-img-top {
     height: 45%;
-    /* Adjust the height to your preference */
     object-fit: cover;
-    /* Ensure the image covers the entire designated area */
 }
-
+.latest-articles-section .card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 /* Additional styles for consistent spacing and alignment */
 .latest-articles-section .card {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5%;
+    margin-bottom: 2%;
+    width: 25%;
 }
 
 .latest-articles-section .card-body {
