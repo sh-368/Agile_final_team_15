@@ -86,7 +86,12 @@ router.post("/search", (req, res, next) => {
     });
   } catch (error) {
     console.error("Search query validation error:", error);
-    return res.status(400).json({ error: "Invalid search query" });
+
+    // Get the previous page URL from the referer header
+    const referer = req.headers.referer || "/";
+
+    // Redirect to the previous page with a warning query parameter
+    res.redirect(`${referer}?warning=invalid_search_query`);
   }
 });
 

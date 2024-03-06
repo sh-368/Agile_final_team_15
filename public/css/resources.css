@@ -128,22 +128,17 @@ body {
     background-color: #218838;
 }
 
-.card-deck {
-    display: flex;
-    margin: 10%;
-}
-
 .card {
     margin-right: 3%;
     padding: 2%;
-    width: 50%;
+    width: 100%;
     height: 50%;
 }
 
 .read-more {
-    /* margin-left: 17%; */
     background-color: #0D99FF !important;
     color: white !important;
+    margin-top: 2%;
 }
 
 .read-more:hover {
@@ -165,50 +160,63 @@ body {
 }
 
 .navbar {
-    background-color: #52CBFF !important;
+    /* background-color: #52CBFF !important; */
+    background-color: #007bff !important;
 }
-
-/* .latest-articles-section{
-    background-color: #F0F9FF;
+.latest-section {
+    margin-top: 30px;
 }
-.latest-tutorials-section {
-    background-color: #F0F9FF;
-}
-
-.latest-recommended-books-section {
-    background-color: #F0F9FF;
-} */
-
-.latest-articles-section h3{
+#content{
     margin-top: 10%;
 }
-.latest-articles-section .card-img-top {
-    height: 45%;
-    object-fit: cover;
+
+h3{
+    padding: 4% !important;
 }
 
-.latest-articles-section .card {
+.latest-section .section-title-banner > h3{
+    /* background-color: #007bff; */
+    background-color: #52CBFF;
+    color: #fff;
     display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5%;
+    justify-content: center;
+    
 }
 
-.latest-articles-section .card-body {
+.latest-section .card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2%;
+}
+
+.latest-section .card {
+    margin-bottom: 2%;
+    width: 30%;
+}
+
+.latest-section .card-body {
+    flex: 1;
+    padding: 3%;
+}
+
+.latest-section .card-text {
     flex: 1;
 }
 
-.latest-articles-section .card-text {
-    flex: 1;
-}
-
-.latest-articles-section .read-more {
+.latest-section .read-more {
     align-self: flex-end;
+}
+
+.latest-section .card-img-top {
+    height: 50%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .explore-all {
     display: block;
     margin: 20px auto;
-    /* Adjust margin to center the button */
     background-color: #007bff;
     color: #fff;
     padding: 10px 20px;
