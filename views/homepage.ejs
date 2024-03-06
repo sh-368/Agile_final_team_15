@@ -172,60 +172,70 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="content">
       <!-- Latest Articles Section -->
       <div class="latest-articles-section page-section">
-        <h3>Trending articles</h3>
-        <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
-        <div class="card-deck">
-          <% latestArticlesGoogle.forEach(article => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= article.title %></h5>
-              <% if (article.imageUrl) { %>
-              <img
-                src="<%= article.imageUrl %>"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <% } %>
-              <a href="<%= article.link %>" class="btn read-more">Read More</a>
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Trending articles</h3>
+            <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
+            <div class="card-deck">
+              <% latestArticlesGoogle.forEach(article => { %>
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= article.title %></h5>
+                  <% if (article.imageUrl) { %>
+                  <img
+                    src="<%= article.imageUrl %>"
+                    class="card-img-top"
+                    alt="Article Image"
+                  />
+                  <% } %>
+                  <a href="<%= article.link %>" class="btn read-more"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+              <% }) %>
             </div>
+            <% } else { %>
+            <p>No articles found.</p>
+            <% } %>
           </div>
-          <% }) %>
         </div>
-        <% } else { %>
-        <p>No articles found.</p>
-        <% } %>
       </div>
 
       <!-- Best Study Tools Section -->
       <div class="best-study-tools-section">
-        <h3>Best Study Tools (Based on Leading Research)</h3>
-        <div class="card-deck" id="tools">
-          <!-- Card 1 - Key cards "Quick test" -->
-          <div class="card">
-            <img
-              src="/assets/img/keycards.jpg"
-              class="card-img-top"
-              alt="Quick Test"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Key cards "Quick test"</h5>
-              <button class="btn read-more">GO</button>
-            </div>
-          </div>
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Best Study Tools (Based on Leading Research)</h3>
+            <div class="card-deck" id="tools">
+              <!-- Card 1 - Key cards "Quick test" -->
+              <div class="card">
+                <img
+                  src="/assets/img/keycards.jpg"
+                  class="card-img-top"
+                  alt="Quick Test"
+                />
+                <div class="card-body text-center">
+                  <h5 class="card-title">Key cards "Quick test"</h5>
+                  <button class="btn read-more">GO</button>
+                </div>
+              </div>
 
-          <!-- Card 2 - Pomodoro timer -->
-          <div class="card">
-            <img
-              src="/assets/img/Pomodoro.jpg"
-              class="card-img-top"
-              alt="Pomodoro Timer"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Pomodoro Timer</h5>
-              <button class="btn read-more">Start</button>
+              <!-- Card 2 - Pomodoro timer -->
+              <div class="card">
+                <img
+                  src="/assets/img/Pomodoro.jpg"
+                  class="card-img-top"
+                  alt="Pomodoro Timer"
+                />
+                <div class="card-body text-center">
+                  <h5 class="card-title">Pomodoro Timer</h5>
+                  <button class="btn read-more">Start</button>
+                </div>
+              </div>
             </div>
           </div>
 

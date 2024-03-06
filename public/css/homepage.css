@@ -147,10 +147,6 @@ body {
     background-color: #52CBFF !important;
 }
 
-h3{
-   padding: 4%;
-}
-
 .logout{
     color: white!important;
     padding:0 !important;
@@ -171,8 +167,26 @@ h3{
     top: 0;
     background-color: #007bff !important;
 }
+.latest-section {
+    margin-top: 30px;
+}
 
-/* Add this style for the card images in the latest articles section */
+#content {
+    margin-top: 10%;
+}
+
+h3 {
+    padding: 4% !important;
+}
+
+.latest-section .section-title-banner>h3 {
+    /* background-color: #007bff; */
+    background-color: #52CBFF;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
 .latest-articles-section .card-img-top {
     height: 45%;
     object-fit: cover;
@@ -226,6 +240,33 @@ h3{
     cursor: pointer;
 }
 
-#tools{
+.best-study-tools-section {
+    margin-top: 30px;
+}
+
+.best-study-tools-section .section-title-banner>h3 {
+    background-color: #52CBFF;
+    color: #fff;
     display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.best-study-tools-section .card-deck {
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-around; */
+}
+
+.best-study-tools-section .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.best-study-tools-section .card-body {
+    text-align: center;
+}
+
+.best-study-tools-section .read-more {
+    margin-top: 10px;
 }
