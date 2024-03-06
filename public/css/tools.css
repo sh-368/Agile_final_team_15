@@ -1,7 +1,41 @@
+#tools{
+    margin-top: 10%;
+}
+
+#flashcards{
+    background-color: #52CBFF;
+    color: white;
+    padding: 2%;
+}
+
+#testCards{
+    margin-left: 25%;
+}
+
+#question{
+    padding: 2%;
+}
+
+#options > button{
+    border: none;
+    background-color: #267191;
+    padding: 2%;
+    color: white;
+    margin-right: 1%;
+    margin-bottom: 1%;
+    border-radius: 10%;
+}
+#options>button:hover{
+    background-color: #4b9dc1;
+}
+
+h4{
+    padding: 2%;
+}
 #pomodoro{
     display: flex;
-    margin-top: 20%;
 }
+
 #pomodoro > p{
     width: 50%;
     margin-left: 10%;
@@ -11,7 +45,7 @@
     font-size: 48px;
     background-color: rgb(173, 42, 19);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 10%;
     color: white;
     display: inline-block;
     margin-left: 2%;
