@@ -5,7 +5,7 @@ const allLatestSection = document.querySelectorAll('.latest-section');
 const allCards = document.querySelectorAll('.card');
 const allBtn = document.querySelectorAll('.btn');
 const navBar = document.getElementById('mainNav');
-const introSection = document.getElementById('.introduction-section');
+const introSection = document.getElementById('introduction-section');
 
 nightModeToggle.addEventListener('click', () => {
 
@@ -39,6 +39,7 @@ nightModeToggle.addEventListener('click', () => {
         // })
         introSection.classList.remove('introduction-section');
         introSection.classList.add('introduction-section-night');
+        introSection.style.backgroundColor = '#301934';
 
     } else {
 
@@ -53,20 +54,23 @@ nightModeToggle.addEventListener('click', () => {
 
         navBar.classList.remove('navbar-night');
         navBar.classList.add('navbar');
+
+        allCards.forEach(card => {
+            card.classList.remove('bg-secondary');
+            card.classList.add('bg-white');
+    
+        })
+    
+        // allBtn.forEach(btn => {
+        //     btn.classList.remove('read-more-night');
+        //     btn.classList.add('read-more');
+    
+        // })
+    
+        introSection.classList.remove('introduction-section-night');
+        introSection.classList.add('introduction-section');
+        introSection.style.backgroundColor = '#007bff';
     }
 
-    allCards.forEach(card => {
-        card.classList.remove('bg-secondary');
-        card.classList.add('bg-white');
 
-    })
-
-    // allBtn.forEach(btn => {
-    //     btn.classList.remove('read-more-night');
-    //     btn.classList.add('read-more');
-
-    // })
-
-    introSection.classList.remove('introduction-section-night');
-    introSection.classList.add('introduction-section');
 });
