@@ -138,6 +138,10 @@ body {
     height: 50%;
 }
 
+.card .card-bg-color {
+    background-color: #333 !important;
+}
+
 .read-more {
     /* margin-left: 17%; */
     background-color: #0D99FF!important;
@@ -185,6 +189,14 @@ h3 {
 .latest-section .section-title-banner>h3 {
     /* background-color: #007bff; */
     background-color: #52CBFF;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.latest-section-night .section-title-banner>h3 {
+    /* background-color: #007bff; */
+    background-color: #301934;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -247,14 +259,6 @@ h3 {
     margin-top: 30px;
 }
 
-.best-study-tools-section .section-title-banner>h3 {
-    background-color: #52CBFF;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-}
-
 .best-study-tools-section .card-deck {
     display: flex;
     /* flex-wrap: wrap; */
@@ -292,3 +296,9 @@ h3 {
     background-color: #0056b3;
 }
 
+.navbar-night {
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    background-color: #301934 !important;
+}
