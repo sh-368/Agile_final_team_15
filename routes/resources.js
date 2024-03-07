@@ -47,7 +47,6 @@ router.get("/book/:bookId", async (req, res, next) => {
 // Render resources page with Latest articles, tutorials, and recommended books
 router.get("/", async (req, res, next) => {
   try {
-    
     // Fetch latest tutorials
     const latestTutorials = await fetchLatestTutorials(tutorialApiKey);
 
@@ -63,7 +62,6 @@ router.get("/", async (req, res, next) => {
         console.error("Database query error:", err);
         return next(err);
       }
-      // console.log(latestArticles);
       try {
         // Fetch random images related to computer science for each article
         const articlesWithImages = await Promise.all(
@@ -88,10 +86,16 @@ router.get("/", async (req, res, next) => {
         );
 
         // Check if user is logged in
-          let userLoggedIn = authMiddleware.isAuthenticatedMisc(req.session.cookie.isAuthenticated);
+        let userLoggedIn = authMiddleware.isAuthenticatedMisc(
+          req.session.cookie.isAuthenticated
+        );
 
-        // Get articles 
-        const latestArticlesGoogle = await articlesController.getArticles("tech", 3, 60);
+        // Get articles
+        const latestArticlesGoogle = await articlesController.getArticles(
+          "tech",
+          6,
+          60
+        );
 
         // Render the resources page and pass all the data to the template
         res.render("resources", {

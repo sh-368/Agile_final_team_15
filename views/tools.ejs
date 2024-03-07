@@ -40,7 +40,7 @@
       <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="/">
           <div class="nav-logo-div">
-                <img src="/assets/img/logo1_white.png" class="nav-logo">
+            <img src="/assets/img/logo1_white.png" class="nav-logo" />
           </div>
         </a>
         <button
@@ -60,16 +60,22 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!-- Change ms-auto to me-auto -->
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/resources">Resources</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/resources"
+                >Resources</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/tools">Tools</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/community">Community</a >
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/community"
+                >Community</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/careers">Careers</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/careers"
+                >Careers</a
+              >
             </li>
           </ul>
           <form action="/search" method="POST" class="d-flex me-lg-4">
@@ -100,20 +106,43 @@
         </div>
       </div>
     </nav>
-    <!-- Main section for page -->
-    <div class="container latest-articles-section">
-      <div class="coding-challenges-container"></div>
-        <h3>Top Coding Challenges</h3>
-      <div class="pomodoro-timer-container"></div>
-        <h3>Pomodoro Timer</h3>
-
-        <div id="timer">25:00
-        <br>
-        <button id="startButton">Start</button>
-        <button id="resetButton">Reset</button>
+    <!-- Pomodoro timer section-->
+    <div id="tools">
+      <!-- Key Cards - Quick Test section-->
+      <div id="key-cards">
+        <h4>Key Cards - Quick Test</h4>
+        <div id="flashcards">
+          <button id="newCardButton" class="btn btn-primary">
+            New Question
+          </button>
+          <div id="testCards">
+            <div id="question"></div>
+            <div id="options"></div>
+            <div id="answer"></div>
+          </div>
+        </div>
       </div>
-      <div class="key-cards-container"></div>
-      <h3>Key Cards</h3>
+      <h4>The Pomodoro Technique</h4>
+      <div id="pomodoro">
+        <div id="pomodoro-timer">
+          <h3>Pomodoro Timer</h3>
+          <div id="timer">25:00</div>
+          <button id="startButton" class="btn btn-primary">Start</button>
+          <button id="resetButton" class="btn btn-secondary">Reset</button>
+        </div>
+        <p>
+          The Pomodoro Technique, a time management method developed by
+          Francesco Cirillo, is an invaluable tool for students seeking enhanced
+          productivity and focus. Inspired by a tomato-shaped kitchen timer, the
+          method employs short, structured intervals, traditionally 25 minutes
+          in duration, known as "Pomodoros." Each Pomodoro is followed by a
+          brief break, fostering sustained concentration and preventing burnout.
+          For students, the Pomodoro Technique proves particularly effective in
+          tackling challenging study sessions. By breaking down complex tasks
+          into manageable intervals, learners can maintain optimal cognitive
+          function while minimizing fatigue.
+        </p>
+      </div>
     </div>
     <!-- Footer-->
     <footer class="border-top">
@@ -159,5 +188,7 @@
     <!-- Include the author-home.js file -->
     <script src="/js/resources.js"></script>
     <script src="/js/scripts.js"></script>
+    <script src="/js/pomodoro.js"></script>
+    <script defer src="/js/quickTest.js"></script>
   </body>
 </html>

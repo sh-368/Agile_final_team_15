@@ -26,17 +26,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-      <link rel="stylesheet" href="/css/homepage.css" />
+    <link rel="stylesheet" href="/css/homepage.css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-      <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
     <!-- Colorblind Script -->
-      <script defer
-        src="js/colorblind.js"
-      ></script>
+    <script defer src="js/colorblind.js"></script>
     <!-- Night Mode Script -->
-      <script defer
-        src="js/night-mode.js"
-      ></script>
+    <script defer src="js/night-mode.js"></script>
   </head>
   <body>
     <!-- Navigation-->
@@ -44,7 +40,7 @@
       <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="/">
           <div class="nav-logo-div">
-                <img src="/assets/img/logo1_white.png" class="nav-logo">
+            <img src="/assets/img/logo1_white.png" class="nav-logo" />
           </div>
         </a>
         <button
@@ -63,16 +59,22 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!-- Change ms-auto to me-auto -->
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/resources">Resources</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/resources"
+                >Resources</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/tools">Tools</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/community">Community</a >
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/community"
+                >Community</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/careers">Careers</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/careers"
+                >Careers</a
+              >
             </li>
           </ul>
           <form action="/search" method="POST" class="d-flex me-lg-4">
@@ -88,36 +90,38 @@
           </form>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
               <!-- Change User Profile Icon, dependant if user is logged in or not -->
-              <% if (userLoggedIn === false) 
-              { %> 
+              <% if (userLoggedIn === false) { %>
               <li class="nav-item">
-                <a class="nav-link user-profile px-lg-3 py-3 py-lg-4" href="/login">
+                <a
+                  class="nav-link user-profile px-lg-3 py-3 py-lg-4"
+                  href="/login"
+                >
                   <i class="fa-solid fa-user-plus fa-2xl"></i>
                 </a>
               </li>
               <% } %>
 
               <!-- Only display Logout icon if user is not logged in -->
-              <% if (userLoggedIn) 
-              { %> 
-                <li class="nav-item">
-                  <button id="logoutButton" class="btn logout">
-                    <i class="fa-solid fa-right-from-bracket fa-2xl text-light"></i>
-                  </button>
-                </li>
-                <% } %>
-                <li>
-                  <button id="colorblindToggle" class="btn mode-toggle">
-                    <i class="fa-brands fa-accessible-icon fa-2xl text-light" ></i>
-                  </button>
-                </li>
-                <li>
-                  <button id="nightModeToggle" class="btn mode-toggle">
-                    <i class="fas fa-sun fa-2xl text-light" ></i>
-                  </button>
-                </li>
+              <% if (userLoggedIn) { %>
+              <li class="nav-item">
+                <button id="logoutButton" class="btn logout">
+                  <i
+                    class="fa-solid fa-right-from-bracket fa-2xl text-light"
+                  ></i>
+                </button>
+              </li>
+              <% } %>
+              <li>
+                <button id="colorblindToggle" class="btn mode-toggle">
+                  <i class="fa-brands fa-accessible-icon fa-2xl text-light"></i>
+                </button>
+              </li>
+              <li>
+                <button id="nightModeToggle" class="btn mode-toggle">
+                  <i class="fas fa-sun fa-2xl text-light"></i>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
@@ -167,68 +171,74 @@
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="content">
       <!-- Latest Articles Section -->
-      <div class="latest-articles-section">
-        <h3>Latest Articles</h3>
-        <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
-        <div class="card-deck">
-          <% latestArticlesGoogle.forEach(article => { %>
-          <div class="card">
-            <!-- Display article information -->
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= article.title %></h5>
-              <p class="card-text"><%= article.subtitle %></p>
-
-              <!-- Display the image if available -->
-              <% if (article.imageUrl) { %>
-              <img
-                src="<%= article.imageUrl %>"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <% } %>
-
-              <!-- Add other relevant information -->
-              <a href="/article/<%= article.article_id %>" class="btn read-more"
-                >Read More</a
-              >
+      <div class="latest-articles-section page-section">
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Trending articles</h3>
+            <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
+            <div class="card-deck">
+              <% latestArticlesGoogle.forEach(article => { %>
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= article.title %></h5>
+                  <% if (article.imageUrl) { %>
+                  <img
+                    src="<%= article.imageUrl %>"
+                    class="card-img-top"
+                    alt="Article Image"
+                  />
+                  <% } %>
+                  <a href="<%= article.link %>" class="btn read-more"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+              <% }) %>
             </div>
+            <% } else { %>
+            <p>No articles found.</p>
+            <% } %>
           </div>
-          <% }) %>
         </div>
-        <% } else { %>
-        <p>No articles found.</p>
-        <% } %>
       </div>
 
       <!-- Best Study Tools Section -->
       <div class="best-study-tools-section">
-        <h3>Best Study Tools (Based on Leading Research)</h3>
-        <div class="card-deck">
-          <!-- Card 1 - Key cards "Quick test" -->
-          <div class="card">
-            <img
-              src="/assets/img/keycards.jpg"
-              class="card-img-top"
-              alt="Quick Test"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Key cards "Quick test"</h5>
-              <button class="btn read-more">GO</button>
-            </div>
-          </div>
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Best Study Tools (Based on Leading Research)</h3>
+            <div class="card-deck" id="tools">
+              <!-- Card 1 - Key cards "Quick test" -->
+              <div class="card">
+                <img
+                  src="/assets/img/keycards.jpg"
+                  class="card-img-top"
+                  alt="Quick Test"
+                />
+                <div class="card-body text-center">
+                  <h5 class="card-title">Key cards "Quick test"</h5>
+                  <a href="/tools">
+                    <button class="btn read-more">GO</button>
+                  </a>
+                </div>
+              </div>
 
-          <!-- Card 2 - Pomodoro timer -->
-          <div class="card">
-            <img
-              src="/assets/img/Pomodoro.jpg"
-              class="card-img-top"
-              alt="Pomodoro Timer"
-            />
-            <div class="card-body text-center">
-              <h5 class="card-title">Pomodoro Timer</h5>
-              <button class="btn read-more">Start</button>
+              <!-- Card 2 - Pomodoro timer -->
+              <div class="card">
+                <img
+                  src="/assets/img/Pomodoro.jpg"
+                  class="card-img-top"
+                  alt="Pomodoro Timer"
+                />
+                <div class="card-body text-center">
+                  <h5 class="card-title">Pomodoro Timer</h5>
+                  <a href="/tools">
+                    <button class="btn read-more">Go</button>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -241,7 +251,9 @@
             />
             <div class="card-body text-center">
               <h5 class="card-title">Coding Challenges</h5>
-              <button class="btn read-more">Start</button>
+              <a href="/tools">
+                <button class="btn read-more">Start</button>
+              </a>
             </div>
           </div>
         </div>

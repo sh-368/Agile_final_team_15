@@ -27,17 +27,12 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="/css/resources.css" />
-    <link rel="stylesheet" href="/css/homepage.css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-      <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
     <!-- Colorblind Script -->
-      <script defer
-        src="js/colorblind.js"
-      ></script>
+    <script defer src="js/colorblind.js"></script>
     <!-- Night Mode Script -->
-      <script defer
-        src="js/night-mode.js"
-      ></script>
+    <script defer src="js/night-mode.js"></script>
   </head>
   <body>
     <!-- Navigation-->
@@ -45,7 +40,7 @@
       <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="/">
           <div class="nav-logo-div">
-                <img src="/assets/img/logo1_white.png" class="nav-logo">
+            <img src="/assets/img/logo1_white.png" class="nav-logo" />
           </div>
         </a>
         <button
@@ -65,16 +60,22 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!-- Change ms-auto to me-auto -->
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/resources">Resources</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/resources"
+                >Resources</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link px-lg-3 py-3 py-lg-4" href="/tools">Tools</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/community">Community</a >
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/community"
+                >Community</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/careers">Careers</a>
+              <a class="nav-link px-lg-3 py-3 py-lg-4" href="/careers"
+                >Careers</a
+              >
             </li>
           </ul>
           <form action="/search" method="POST" class="d-flex me-lg-4">
@@ -90,97 +91,111 @@
           </form>
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
               <!-- Change User Profile Icon, dependant if user is logged in or not -->
-              <% if (userLoggedIn === false) 
-              { %> 
+              <% if (userLoggedIn === false) { %>
               <li class="nav-item">
-                <a class="nav-link user-profile px-lg-3 py-3 py-lg-4" href="/login">
+                <a
+                  class="nav-link user-profile px-lg-3 py-3 py-lg-4"
+                  href="/login"
+                >
                   <i class="fa-solid fa-user-plus fa-2xl"></i>
                 </a>
               </li>
               <% } %>
 
               <!-- Only display Logout icon if user is not logged in -->
-              <% if (userLoggedIn) 
-              { %> 
-                <li class="nav-item">
-                  <button id="logoutButton" class="btn logout">
-                    <i class="fa-solid fa-right-from-bracket fa-2xl text-light"></i>
-                  </button>
-                </li>
-                <% } %>
-                <li>
-                  <button id="colorblindToggle" class="btn mode-toggle">
-                    <i class="fa-brands fa-accessible-icon fa-2xl text-light" ></i>
-                  </button>
-                </li>
-                <li>
-                  <button id="nightModeToggle" class="btn mode-toggle">
-                    <i class="fas fa-sun fa-2xl text-light" ></i>
-                  </button>
-                </li>
+              <% if (userLoggedIn) { %>
+              <li class="nav-item">
+                <button id="logoutButton" class="btn logout">
+                  <i
+                    class="fa-solid fa-right-from-bracket fa-2xl text-light"
+                  ></i>
+                </button>
+              </li>
+              <% } %>
+              <li>
+                <button id="colorblindToggle" class="btn mode-toggle">
+                  <i class="fa-brands fa-accessible-icon fa-2xl text-light"></i>
+                </button>
+              </li>
+              <li>
+                <button id="nightModeToggle" class="btn mode-toggle">
+                  <i class="fas fa-sun fa-2xl text-light"></i>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="content">
       <!-- Latest Articles Section -->
       <div class="latest-articles-section page-section">
-        <h3>Latest Articles</h3>
-        <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
-        <div class="card-deck">
-          <% latestArticlesGoogle.forEach(article => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= article.title %></h5>
-              <% if (article.imageUrl) { %>
-              <img
-                src="<%= article.imageUrl %>"
-                class="card-img-top"
-                alt="Article Image"
-              />
-              <% } %>
-              <a href="<%= article.link %>" class="btn read-more">Read More</a>
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Latest Articles</h3>
+            <% if (latestArticlesGoogle && latestArticlesGoogle.length > 0) { %>
+            <div class="card-deck">
+              <% latestArticlesGoogle.forEach(article => { %>
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= article.title %></h5>
+                  <% if (article.imageUrl) { %>
+                  <img
+                    src="<%= article.imageUrl %>"
+                    class="card-img-top"
+                    alt="Article Image"
+                  />
+                  <% } %>
+                  <a href="<%= article.link %>" class="btn read-more"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+              <% }) %>
             </div>
+            <a href="/reader/articles" class="btn explore-all"
+              >Explore All Articles</a
+            >
+            <% } else { %>
+            <p>No articles found.</p>
+            <% } %>
           </div>
-          <% }) %>
         </div>
-        <a href="/reader/articles" class="btn explore-all"
-          >Explore All Articles</a
-        >
-        <% } else { %>
-        <p>No articles found.</p>
-        <% } %>
       </div>
 
       <!-- Latest Tutorials Section -->
       <div class="latest-tutorials-section page-section">
-        <h3>Latest Tutorials</h3>
-        <% if (latestTutorials && latestTutorials.length > 0) { %>
-        <div class="card-deck">
-          <% latestTutorials.forEach(tutorial => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <h5 class="card-title"><%= tutorial.title %></h5>
-              <p class="card-text"><%= tutorial.description %></p>
-              <img
-                src="<%= tutorial.thumbnail %>"
-                class="card-img-top"
-                alt="Tutorial Thumbnail"
-              />
-              <a
-                href="https://www.youtube.com/watch?v=<%= tutorial.videoId %>"
-                class="btn read-more"
-                >Watch Tutorial</a
-              >
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Latest Tutorials</h3>
+            <% if (latestTutorials && latestTutorials.length > 0) { %>
+            <div class="card-deck">
+              <% latestTutorials.forEach(tutorial => { %>
+              <div class="card">
+                <div class="card-body text-center">
+                  <h5 class="card-title"><%= tutorial.title %></h5>
+                  <p class="card-text"><%= tutorial.description %></p>
+                  <img
+                    src="<%= tutorial.thumbnail %>"
+                    class="card-img-top"
+                    alt="Tutorial Thumbnail"
+                  />
+                  <a
+                    href="https://www.youtube.com/watch?v=<%= tutorial.videoId %>"
+                    class="btn read-more"
+                    >Watch Tutorial</a
+                  >
+                </div>
+              </div>
+              <% }) %>
             </div>
           </div>
-          <% }) %>
         </div>
-        <a href="/resources/tutorials" class="btn explore-all">Explore All Tutorials</a>
+        <a href="/resources/tutorials" class="btn explore-all"
+          >Explore All Tutorials</a
+        >
         <% } else { %>
         <p>No tutorials found.</p>
         <% } %>
@@ -193,42 +208,48 @@
       '...'; } else { return text; } } %>
       <!-- Latest Recommended Books Section -->
       <div class="latest-recommended-books-section page-section">
-        <h3>Latest Recommended Books</h3>
-        <% if (latestBooks && latestBooks.length > 0) { %>
-        <div class="card-deck">
-          <% latestBooks.forEach(book => { %>
-          <div class="card">
-            <div class="card-body text-center">
-              <!-- Adding a hyperlink to the book page with dynamic URL -->
-              <h5 class="card-title">
-                <a href="/book/<%= book.book_id %>"><%= book.title %></a>
-              </h5>
-              <% if (book.authors) { %>
-              <p class="card-text">Author(s): <%= book.authors %></p>
-              <% } %>
-              <!-- Using the truncateText function for book description -->
-              <p class="card-text">
-                <%= truncateText(book.description, 50) %>
-                <!-- Adjust the word count as needed -->
-              </p>
-              <% if (book.publication_date) { %>
-              <p class="card-text">Published on <%= book.publication_date %></p>
-              <% } %> <% if (book.imageUrl) { %>
-              <img
-                src="<%= book.imageUrl %>"
-                class="card-img-top"
-                alt="Book Image"
-              />
-              <% } %>
-              <!-- Modify the hyperlink to dynamically construct the Google Books URL -->
-              <a
-                href="<%= `https://books.google.be/books?id=${book.bookId}&hl=&source=gbs_api` %>"
-                class="btn read-more"
-                >Read More</a
-              >
+        <div class="latest-section">
+          <div class="section-title-banner">
+            <h3>Latest Recommended Books</h3>
+            <% if (latestBooks && latestBooks.length > 0) { %>
+            <div class="card-deck">
+              <% latestBooks.forEach(book => { %>
+              <div class="card">
+                <div class="card-body text-center">
+                  <!-- Adding a hyperlink to the book page with dynamic URL -->
+                  <h5 class="card-title">
+                    <a href="/book/<%= book.book_id %>"><%= book.title %></a>
+                  </h5>
+                  <% if (book.authors) { %>
+                  <p class="card-text">Author(s): <%= book.authors %></p>
+                  <% } %>
+                  <!-- Using the truncateText function for book description -->
+                  <p class="card-text">
+                    <%= truncateText(book.description, 50) %>
+                    <!-- Adjust the word count as needed -->
+                  </p>
+                  <% if (book.publication_date) { %>
+                  <p class="card-text">
+                    Published on <%= book.publication_date %>
+                  </p>
+                  <% } %> <% if (book.imageUrl) { %>
+                  <img
+                    src="<%= book.imageUrl %>"
+                    class="card-img-top"
+                    alt="Book Image"
+                  />
+                  <% } %>
+                  <!-- Modify the hyperlink to dynamically construct the Google Books URL -->
+                  <a
+                    href="<%= `https://books.google.be/books?id=${book.bookId}&hl=&source=gbs_api` %>"
+                    class="btn read-more"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+              <% }) %>
             </div>
           </div>
-          <% }) %>
         </div>
         <a href="/resources/recommended-books" class="btn explore-all"
           >Explore All Books</a

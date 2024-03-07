@@ -16,7 +16,6 @@ router.get("/", async (req, res, next) => {
     FROM articles
     ORDER BY publication_date DESC
     LIMIT 3;`;
-
   global.db.all(latestArticlesQuery, [], async (err, latestArticles) => {
     if (err) {
       console.error("Database query error:", err);
@@ -32,20 +31,25 @@ router.get("/", async (req, res, next) => {
         })
       );
 
-      let userLoggedIn = authMiddleware.isAuthenticatedMisc(req.session.cookie.isAuthenticated);
-      console.log(userLoggedIn)
-      console.log(req.session)
+      let userLoggedIn = authMiddleware.isAuthenticatedMisc(
+        req.session.cookie.isAuthenticated
+      );
 
-      const latestArticlesGoogle = await articlesController.getArticles("*", 3, 60);
+      const latestArticlesGoogle = await articlesController.getArticles(
+        "*",
+        6,
+        60
+      );
+      console.log("Latest articles Homepage", latestArticlesGoogle);
 
       // Render the homepage and pass the updated latest articles data to the template
-        res.render("homepage", {
-          userLoggedIn,
-          nbOfSlides,
-          sliderCounter,
-          // latestArticles: articlesWithImages,
-          latestArticlesGoogle
-        });
+      res.render("homepage", {
+        userLoggedIn,
+        nbOfSlides,
+        sliderCounter,
+        // latestArticles: articlesWithImages,
+        latestArticlesGoogle,
+      });
     } catch (error) {
       console.error("Error fetching random images:", error);
       return next(error);
@@ -82,7 +86,12 @@ router.post("/search", (req, res, next) => {
     });
   } catch (error) {
     console.error("Search query validation error:", error);
-    return res.status(400).json({ error: "Invalid search query" });
+
+    // Get the previous page URL from the referer header
+    const referer = req.headers.referer || "/";
+
+    // Redirect to the previous page with a warning query parameter
+    res.redirect(`${referer}?warning=invalid_search_query`);
   }
 });
 
