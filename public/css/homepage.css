@@ -59,6 +59,20 @@ body {
     background-color: #0056b3;
 }
 
+.btn-night {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: purple;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.btn-night:hover {
+    background-color: purple;
+}
+
 .action-buttons {
     margin-top: 20px;
 }
@@ -151,6 +165,17 @@ body {
     background-color: #52CBFF !important;
 }
 
+.read-more-night {
+    /* margin-left: 17%; */
+    background-color: #301934!important;
+    color:white!important;
+    padding: 2%;
+    margin-top: 10%;
+}
+.read-more:hover{
+    background-color: #301934 !important;
+}
+
 .logout{
     color: white!important;
     padding:0 !important;
@@ -185,7 +210,7 @@ h3 {
 
 .latest-section .section-title-banner>h3 {
     /* background-color: #007bff; */
-    background-color: #52CBFF;
+    background-color: #007bff;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -298,4 +323,26 @@ h3 {
     position: fixed;
     top: 0;
     background-color: #301934 !important;
+}
+
+.introduction-section {
+    background-color: #007bff;
+    color: #fff;
+    padding: 1rem;
+    margin: 1rem;
+    border: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.introduction-section-night{
+    background-color: #301934;
+    color: #fff;
+    padding: 1rem;
+    margin: 1rem;
+    border: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }

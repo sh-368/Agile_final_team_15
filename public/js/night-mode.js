@@ -3,7 +3,9 @@ let isNightMode = false;
 const nightModeToggle = document.getElementById('nightModeToggle');
 const allLatestSection = document.querySelectorAll('.latest-section');
 const allCards = document.querySelectorAll('.card');
+const allBtn = document.querySelectorAll('.btn');
 const navBar = document.getElementById('mainNav');
+const introSection = document.getElementById('.introduction-section');
 
 nightModeToggle.addEventListener('click', () => {
 
@@ -17,7 +19,7 @@ nightModeToggle.addEventListener('click', () => {
         navBar.classList.remove('navbar');
         navBar.classList.add('navbar-night');
 
-        console.log(allLatestSection)
+        console.log(allBtn)
         allLatestSection.forEach(latestSection => {
             latestSection.classList.remove('latest-section');
             latestSection.classList.add('latest-section-night');
@@ -26,10 +28,17 @@ nightModeToggle.addEventListener('click', () => {
 
         allCards.forEach(card => {
             card.style.backgroundColor = '#333333';
-            card.classList.remove('bg-white p-3');
-            card.classList.add('bg-secondary p-3');
+            card.classList.remove('bg-white');
+            card.classList.add('bg-secondary');
 
         })
+
+        // allBtn.forEach(btn => {
+        //     btn.classList.remove('read-more');
+        //     btn.classList.add('read-more-night');
+        // })
+        introSection.classList.remove('introduction-section');
+        introSection.classList.add('introduction-section-night');
 
     } else {
 
@@ -47,8 +56,17 @@ nightModeToggle.addEventListener('click', () => {
     }
 
     allCards.forEach(card => {
-        card.classList.remove('bg-secondary p-3');
-        card.classList.add('bg-white p-3');
+        card.classList.remove('bg-secondary');
+        card.classList.add('bg-white');
 
     })
+
+    // allBtn.forEach(btn => {
+    //     btn.classList.remove('read-more-night');
+    //     btn.classList.add('read-more');
+
+    // })
+
+    introSection.classList.remove('introduction-section-night');
+    introSection.classList.add('introduction-section');
 });
