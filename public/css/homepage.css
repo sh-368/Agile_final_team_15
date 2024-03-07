@@ -22,7 +22,9 @@ body {
     padding: 10px 20px;
     display: inline-block;
 }
-
+#mainNav{
+    margin-top: 0px;
+}
 .nav {
     list-style: none;
     padding: 0;
@@ -51,7 +53,7 @@ body {
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     text-decoration: none;
 }
 
@@ -179,6 +181,7 @@ h3 {
     padding: 4% !important;
 }
 
+
 .latest-section .section-title-banner>h3 {
     /* background-color: #007bff; */
     background-color: #52CBFF;
@@ -288,3 +291,4 @@ h3 {
 #goToTopBtn:hover {
     background-color: #0056b3;
 }
+
