@@ -1,0 +1,3 @@
+[submodule "submodules/indeed-js"]
+	path = submodules/indeed-js
+	url = https://github.com/indeedlabs/indeed-js
