@@ -128,4 +128,24 @@ INSERT INTO comments (text, publication_date, article_id, reader_id) VALUES
     ('Great article!', '2023-07-19', 1, 2),
     ('Interesting read!', '2023-07-20', 2, 2);
 
+-- Insert dummy forums
+INSERT INTO forums (title, description) VALUES
+  ('General Discussion', 'Discuss anything related to the community'),
+  ('Programming Help', 'Get help with programming questions'),
+  ('Tech News', 'Discuss the latest technology news');
+
+-- Insert dummy topics
+INSERT INTO topics (title, content, created_at, publication_date, author_id, forum_id) VALUES
+  ('Topic 1', 'Content for Topic 1', '2024-03-06', '2024-03-06', 1, 1),
+  ('Topic 2', 'Content for Topic 2', '2024-03-06', '2024-03-06', 2, 1),
+  ('Topic 3', 'Content for Topic 3', '2024-03-06', '2024-03-06', 1, 2);
+
+-- Insert dummy posts
+INSERT INTO posts (text, publication_date, topic_id, author_id) VALUES
+  ('Post 1 for Topic 1', '2024-03-06', 1, 1),
+  ('Post 2 for Topic 1', '2024-03-06', 1, 2),
+  ('Post 1 for Topic 2', '2024-03-06', 2, 2),
+  ('Post 1 for Topic 3', '2024-03-06', 3, 1);
+
+
 COMMIT;
