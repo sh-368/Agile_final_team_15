@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS topics (
     topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT NOT NULL,
     content TEXT,
+    created_at TEXT,
     publication_date TEXT,
     author_id INTEGER,
     forum_id INTEGER,

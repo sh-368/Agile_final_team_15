@@ -120,7 +120,7 @@ router.post("/create-author-settings", (req, res, next) => {
           req.session.authorName = authorName;
           console.log("Author name updated successfully");
           // Redirect the user to the Author - Home Page after successfully creating the settings
-          res.redirect("/");
+          res.redirect("/home");
         });
       });
     } else {

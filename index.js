@@ -85,7 +85,7 @@ app.use("/resources", resourcesRoutes);
 app.use("/tools", toolsRoutes);
 
 // Add the Community routes middleware (No authentication required)
-app.use("/community", authMiddleware.isAuthenticated, communityRoutes);
+app.use("/community", communityRoutes);
 
 // Add the Community routes middleware (No authentication required)
 app.use("/careers", careersRoutes);
