@@ -11,7 +11,7 @@ const { v4: uuidv4 } = require("uuid");
 // Purpose: Render the Author's Home Page with their published and draft articles.
 // Inputs: None (uses session data for user authentication)
 // Outputs: Rendered HTML page with the Author's Home Page data
-router.get("/home", isAuthenticated, (req, res, next) => {
+router.get("/", isAuthenticated, (req, res, next) => {
   const userId = req.session.userId;
 
   if (!userId) {
@@ -120,7 +120,7 @@ router.post("/create-author-settings", (req, res, next) => {
           req.session.authorName = authorName;
           console.log("Author name updated successfully");
           // Redirect the user to the Author - Home Page after successfully creating the settings
-          res.redirect("/author/home");
+          res.redirect("/");
         });
       });
     } else {
@@ -145,7 +145,7 @@ router.post("/create-author-settings", (req, res, next) => {
           req.session.authorName = authorName;
           console.log("Author name updated successfully");
           // Redirect the user to the Author - Home Page after successfully creating the settings
-          res.redirect("/author/home");
+          res.redirect("/");
         });
       });
     }

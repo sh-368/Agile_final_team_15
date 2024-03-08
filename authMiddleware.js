@@ -6,7 +6,6 @@ const isAuthenticated = (req, res, next) => {
     next();
   } else {
     res.redirect("/login");
-    console.log("Could not login");
   }
 };
 
@@ -50,9 +49,9 @@ const handleLogin = (req, res) => {
 
         // Depending on the user's role (author or reader), redirect to the appropriate route
         if (user.role === "author") {
-          res.redirect("/author/home");
+          res.redirect("/author");
         } else if (user.role === "reader") {
-          res.redirect("/reader/home");
+          res.redirect("/reader");
         } else {
           // Handle other roles as needed
           res.redirect("/"); // Redirect to the homepage for unknown roles

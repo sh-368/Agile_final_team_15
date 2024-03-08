@@ -10,6 +10,12 @@ DROP TABLE IF EXISTS settings;
 DROP TABLE IF EXISTS readers;
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS forums;
+DROP TABLE IF EXISTS topics;
+DROP TABLE IF EXISTS posts;
+
+
+
 
 -- Create the users table
 CREATE TABLE IF NOT EXISTS users (
@@ -69,6 +75,38 @@ CREATE TABLE IF NOT EXISTS drafts (
     author_id INTEGER,
     FOREIGN KEY (author_id) REFERENCES users(user_id)
 );
+
+-- Create the forums table
+CREATE TABLE IF NOT EXISTS forums (
+    forum_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT
+);
+
+-- Create the topics table
+CREATE TABLE IF NOT EXISTS topics (
+    topic_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    content TEXT,
+    publication_date TEXT,
+    author_id INTEGER,
+    forum_id INTEGER,
+    FOREIGN KEY (author_id) REFERENCES users(user_id),
+    FOREIGN KEY (forum_id) REFERENCES forums(forum_id)
+);
+
+-- Create the posts table
+CREATE TABLE IF NOT EXISTS posts (
+    post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    text TEXT NOT NULL,
+    publication_date TEXT,
+    topic_id INTEGER,
+    author_id INTEGER,
+    FOREIGN KEY (topic_id) REFERENCES topics(topic_id) ON DELETE CASCADE,
+    FOREIGN KEY (author_id) REFERENCES users(user_id)
+);
+
+
 
 -- Insert some default data for testing (optional)
 INSERT INTO users (name, role, password) VALUES

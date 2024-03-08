@@ -1,11 +1,11 @@
-const functions = require('firebase-functions');
+const functions = require("firebase-functions");
 const express = require("express");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 // Instantiate instance of Express app:
-  const app = express();
-// Set config for Express app  
-  const port = process.env.PORT || 443;
+const app = express();
+// Set config for Express app
+const port = process.env.PORT || 443;
 // Import the path module
 const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
@@ -36,33 +36,34 @@ app.set("view engine", "ejs");
 // Middleware for session management
 app.use(
   session({
-    
-    secret: ['nhCL6aPj$eGwNp8mzDQFKf', 
-    'hnWH+dpVU$BczeR4Q7guf5',
-     'fhR!+z7WjcTnpUGD4@ZQ=^',
-     'azNR*Yke#=tpJ8C62!mqgB',
-     'fr*=9SF!4yPtBTq8h5Qapc'],
+    secret: [
+      "nhCL6aPj$eGwNp8mzDQFKf",
+      "hnWH+dpVU$BczeR4Q7guf5",
+      "fhR!+z7WjcTnpUGD4@ZQ=^",
+      "azNR*Yke#=tpJ8C62!mqgB",
+      "fr*=9SF!4yPtBTq8h5Qapc",
+    ],
 
     // Save the session object in session store if not modified in current request:
-      resave: false,
-    
-    // New session objects that are not yet modified. 
-    // This will save any sessions even if not logged in. 
+    resave: false,
+
+    // New session objects that are not yet modified.
+    // This will save any sessions even if not logged in.
     // *Check Legal Cookie Policy per region
-      saveUninitialized: true,
+    saveUninitialized: true,
 
     // Cookie object config:
-      cookie: { 
-        // Encrypts session object (the cookie)
-        // Set to true if using HTTPS
-          secure: false,
-        
-        // Expires cookies every 12 hours (Note: default is 400 days)
-          maxAge: 43200000,
+    cookie: {
+      // Encrypts session object (the cookie)
+      // Set to true if using HTTPS
+      secure: false,
 
-        // Sets default as no user logged in
-          isAuthenticated: false
-        },
+      // Expires cookies every 12 hours (Note: default is 400 days)
+      maxAge: 43200000,
+
+      // Sets default as no user logged in
+      isAuthenticated: false,
+    },
   })
 );
 
@@ -84,7 +85,7 @@ app.use("/resources", resourcesRoutes);
 app.use("/tools", toolsRoutes);
 
 // Add the Community routes middleware (No authentication required)
-app.use("/community", communityRoutes);
+app.use("/community", authMiddleware.isAuthenticated, communityRoutes);
 
 // Add the Community routes middleware (No authentication required)
 app.use("/careers", careersRoutes);
@@ -98,8 +99,8 @@ app.use("/reader", readerRoutes);
 // Add the user routes middleware (No authentication required)
 app.use("/user", userRoutes);
 
-// Add the author routes middleware (Apply the isAuthenticated middleware to protect author routes)
-app.use("/author", authMiddleware.isAuthenticated, authorRoutes);
+// Add the author routes middleware (Apply the isAuthenticated middleware to protect user routes)
+app.use("/author", authorRoutes);
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
@@ -109,4 +110,4 @@ app.listen(port, () => {
 });
 
 // export express app instance. Imported by Firebase functions:
-  exports.app = functions.region('europe-west1').https.onRequest(app);
+exports.app = functions.region("europe-west1").https.onRequest(app);
