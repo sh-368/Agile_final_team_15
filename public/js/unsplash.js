@@ -23,8 +23,6 @@ async function getRandomImage() {
     const response = await fetch(`${apiUrl}&client_id=${accessKey}`);
     const data = await response.text();
 
-    // console.log("Unsplash API Response:", data);
-
     if (response.ok) {
       // If the response is successful, parse the JSON
       const jsonData = JSON.parse(data);
@@ -50,7 +48,6 @@ async function getRandomImage() {
 // Example usage
 getRandomImage().then((imageUrl) => {
   if (imageUrl) {
-    console.log("Random Image URL:", imageUrl);
     // Now you can use this imageUrl for your article
   } else {
     console.log("Failed to fetch a random image.");

@@ -40,7 +40,6 @@ router.get("/", async (req, res, next) => {
         6,
         60
       );
-      console.log("Latest articles Homepage", latestArticlesGoogle);
 
       // Render the homepage and pass the updated latest articles data to the template
       res.render("homepage", {
@@ -63,8 +62,6 @@ router.get("/search", (req, res) => {
 
 router.post("/search", (req, res, next) => {
   const searchQuery = req.body.searchQuery;
-  console.log("Search Query:", searchQuery);
-
   try {
     validateSearchQuery(searchQuery);
 

@@ -16,7 +16,6 @@ const axios = require("axios");
 router.get("/book/:bookId", async (req, res, next) => {
   try {
     const bookId = req.params.bookId;
-    // console.log("Book ID:", bookId);
     // Fetch book details using Google Books API
     const googleBooksApiUrl = `https://www.googleapis.com/books/v1/volumes/${bookId}`;
     const response = await axios.get(googleBooksApiUrl, {
@@ -35,7 +34,6 @@ router.get("/book/:bookId", async (req, res, next) => {
       publishedDate: volumeInfo.publishedDate || "Unknown Published Date",
       imageUrl: volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : null,
     };
-    // console.log(bookDetails);
 
     res.json({ success: true, bookDetails });
   } catch (error) {
@@ -70,7 +68,6 @@ router.get("/", async (req, res, next) => {
             return { ...article, imageUrl };
           })
         );
-        // console.log(latestArticles);
         // Fetch recommended books with more details
         const recommendedBooks = await fetchRecommendedBooks(
           googleBooksApiKey,

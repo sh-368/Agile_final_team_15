@@ -50,7 +50,6 @@ class articlesController {
   }
 
   static #constructArticlesObject(articlesData) {
-    // console.log(articlesData)
     let articlesList = [];
     for (let i = 0; i < articlesData.length; i++) {
       let article = {

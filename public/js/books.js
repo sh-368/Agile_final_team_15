@@ -19,7 +19,7 @@ async function fetchRecommendedBooks(apiKey, maxResults = 3) {
       const volumeInfo = item.volumeInfo;
       // Extracting the Book ID
       const bookId = item.id;
-      console.log(bookId);
+      
       return {
         bookId: bookId,
         title: volumeInfo.title,
@@ -34,7 +34,7 @@ async function fetchRecommendedBooks(apiKey, maxResults = 3) {
       };
     });
 
-    console.log(recommendedBooks);
+
     return recommendedBooks;
   } catch (error) {
     console.error("Error fetching recommended books:", error.message);
