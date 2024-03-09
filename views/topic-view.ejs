@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Community</title>
+    <title>Topic View</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon_white.ico" />
     <!-- Font Awesome icons-->
     <script
@@ -102,78 +102,74 @@
         </div>
       </div>
     </nav>
-    <!-- Community Section -->
-    <!-- Main Content -->
-    <div class="container" id="content">
-      <!-- Stack Overflow Questions Section -->
-      <div class="stack-overflow-section page-section">
-        <div class="section-title-banner">
-          <h3>Stack Overflow Questions</h3>
-        </div>
-
-        <!-- List of Stack Overflow questions -->
-        <ul>
-          <% stackOverflowQuestions.forEach(question => { %>
-          <li>
-            <a href="<%= question.link %>" target="_blank"
-              ><%= question.title %></a
-            >
-          </li>
-          <% }) %>
-        </ul>
-      </div>
-      <!-- Forum Section -->
-      <div class="forum-section page-section">
-        <div class="section-title-banner">
-          <h3>Forums</h3>
-        </div>
-
-        <!-- List of forums -->
-        <ul>
-          <% forums.forEach(forum => { %>
-          <li>
-            <a href="/forums/<%= forum.forum_id %>"><%= forum.title %></a>
-          </li>
-          <% }) %>
-        </ul>
-
-        <!-- Latest Topics Section -->
-        <div class="latest-topics-section">
-          <h4>Latest Topics</h4>
-          <!-- List of latest topics goes here -->
-          <ul>
-            <% latestTopics.forEach(topic => { %>
-            <li>
-              <a
-                href="/forums/<%= topic.forum_id %>/topics/<%= topic.topic_id %>"
-                ><%= topic.title %></a
+    <!-- Topic Content -->
+    <article class="mb-4">
+      <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+            <div class="mb-4">
+              <h1><%= topic.title %></h1>
+              <h2 class="subheading">Author: <%= topic.authorName %></h2>
+              <span class="meta"
+                >Posted on <%= utils.formatDate(topic.publication_date) %></span
               >
-            </li>
-            <% }) %>
-          </ul>
-        </div>
-
-        <!-- Single Topic Section -->
-        <div class="single-topic-section">
-          <!-- Display single topic details and posts -->
-          <% if (posts.length > 0) { %>
-          <h4><%= posts[0].topic.title %></h4>
-          <p><%= posts[0].topic.content %></p>
-
-          <!-- List of posts -->
-          <ul>
-            <% posts.forEach(post => { %>
-            <li>
-              <p><%= post.text %></p>
-            </li>
-            <% }) %>
-          </ul>
-          <% } else { %>
-          <p>No posts available for this topic.</p>
-          <% } %>
+            </div>
+            <div class="mb-4"><%- topic.content %></div>
+            <!-- Posts Section -->
+            <h3 class="mb-3">Posts:</h3>
+            <div>
+              <% if (posts.length > 0) { %> <% posts.forEach(post => { %>
+              <div class="border rounded p-3 mb-3">
+                <h5 class="mb-2">
+                  <a href="/profile/<%= post.reader_id %>"
+                    ><%= post.authorName %></a
+                  >
+                  <!-- Add a delete button if the post was made by the logged-in reader -->
+                  <% if (post.reader_id === req.session.userId) { %>
+                  <button
+                    class="btn btn-sm btn-danger"
+                    onclick="deletePost('<%= topic.topic_id %>', '<%= post.post_id %>')"
+                  >
+                    Delete
+                  </button>
+                  <% } %>
+                </h5>
+                <p><%= post.text %></p>
+                <p class="small text-muted">
+                  <%= utils.formatDate(post.publication_date) %>
+                </p>
+              </div>
+              <% }) %> <% } else { %>
+              <p>No posts yet.</p>
+              <% } %>
+            </div>
+            <!-- Add a Post Form -->
+            <h3 class="mb-3">Add a Post:</h3>
+            <form action="/add-post" method="POST" id="postForm">
+              <input
+                type="hidden"
+                name="topic_id"
+                value="<%= topic.topic_id %>"
+              />
+              <div class="mb-3">
+                <label for="postText" class="form-label">Post:</label>
+                <textarea
+                  class="form-control"
+                  id="postText"
+                  name="text"
+                  rows="5"
+                  placeholder="Type your post here..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit Post</button>
+            </form>
+            <br />
+            <a href="/community" class="btn btn-primary">Back to Community</a>
+          </div>
         </div>
       </div>
-    </div>
+    </article>
     <!-- Footer-->
     <footer class="border-top">
       <div class="container px-4 px-lg-5">
