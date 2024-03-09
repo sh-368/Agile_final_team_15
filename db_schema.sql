@@ -14,9 +14,6 @@ DROP TABLE IF EXISTS forums;
 DROP TABLE IF EXISTS topics;
 DROP TABLE IF EXISTS posts;
 
-
-
-
 -- Create the users table
 CREATE TABLE IF NOT EXISTS users (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -132,20 +129,23 @@ INSERT INTO comments (text, publication_date, article_id, reader_id) VALUES
 INSERT INTO forums (title, description) VALUES
   ('General Discussion', 'Discuss anything related to the community'),
   ('Programming Help', 'Get help with programming questions'),
-  ('Tech News', 'Discuss the latest technology news');
+  ('Tech News', 'Discuss the latest technology news'),
+  ('Computer Science', 'Topics related to computer science discussions');
 
--- Insert dummy topics
+-- Insert dummy topics for the Computer Science forum
 INSERT INTO topics (title, content, created_at, publication_date, author_id, forum_id) VALUES
-  ('Topic 1', 'Content for Topic 1', '2024-03-06', '2024-03-06', 1, 1),
-  ('Topic 2', 'Content for Topic 2', '2024-03-06', '2024-03-06', 2, 1),
-  ('Topic 3', 'Content for Topic 3', '2024-03-06', '2024-03-06', 1, 2);
+  ('Algorithms in Python', 'Discuss various algorithms implemented in Python', '2024-03-06', '2024-03-06', 1, 1),
+  ('Machine Learning Basics', 'Introduction to machine learning concepts', '2024-03-06', '2024-03-06', 1, 2),
+  ('Web Development Trends', 'Latest trends and technologies in web development', '2024-03-06', '2024-03-06', 1, 3);
 
--- Insert dummy posts
+-- Insert dummy posts for the topics
 INSERT INTO posts (text, publication_date, topic_id, author_id) VALUES
-  ('Post 1 for Topic 1', '2024-03-06', 1, 1),
-  ('Post 2 for Topic 1', '2024-03-06', 1, 2),
-  ('Post 1 for Topic 2', '2024-03-06', 2, 2),
-  ('Post 1 for Topic 3', '2024-03-06', 3, 1);
+  ('I have a question about sorting algorithms. Can someone help?', '2024-03-06', 1, 1),
+  ('Sure! I can help you with sorting algorithms. What do you need assistance with?', '2024-03-06', 1, 2),
+  ('Has anyone tried implementing a simple machine learning model in Python?', '2024-03-06', 2, 2),
+  ('Yes, I''ve worked on a basic linear regression model. Happy to share my experience!', '2024-03-06', 2, 1),
+  ('Excited about the upcoming web development technologies. Any recommendations for learning?', '2024-03-06', 3, 1),
+  ('You should check out the latest JavaScript frameworks like React and Vue.js!', '2024-03-06', 3, 2);
 
 
 COMMIT;

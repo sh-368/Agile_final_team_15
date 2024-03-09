@@ -1,15 +1,39 @@
 const path = require("path");
 const utils = require(path.join(__dirname, "../public/js/utils"));
-// Function to fetch all forums
-function fetchForums(callback) {
-  const query = "SELECT * FROM forums";
-  global.db.all(query, (err, forums) => {
-    if (err) {
-      callback(new Error(`Error fetching forums: ${err.message}`), null);
-    } else {
-      callback(null, forums);
-    }
+
+function fetchForumsWithTopics() {
+  return new Promise((resolve, reject) => {
+    const forumQuery = "SELECT * FROM forums";
+    global.db.all(forumQuery, async (err, forums) => {
+      if (err) {
+        reject(new Error(`Error fetching forums: ${err.message}`));
+      } else {
+        try {
+          // Use Promise.all to wait for all async operations to complete
+          const forumsWithTopics = await Promise.all(
+            forums.map(async (forum) => {
+              console.log("Fetch forum id", forum.forum_id);
+              const topics = await getTopicsInForum(forum.forum_id);
+              return { ...forum, topics };
+            })
+          );
+          resolve(forumsWithTopics);
+        } catch (err) {
+          reject(new Error(`Error fetching topics for forums: ${err.message}`));
+        }
+      }
+    });
   });
+}
+// Inside getTopicsInForum function
+async function getTopicsInForum(forumId) {
+  const topicsQuery = `
+    SELECT t.topic_id, t.title
+    FROM topics t
+    WHERE t.forum_id = ?;`;
+  const topics = await global.db.all(topicsQuery, [forumId]);
+  console.log("Fetched topics for forum", forumId, ":", topics);
+  return topics;
 }
 
 // Function to fetch latest topics
@@ -86,7 +110,7 @@ function addPostToTopic(topicId, text, authorId, callback) {
 }
 
 module.exports = {
-  fetchForums,
+  fetchForumsWithTopics,
   fetchLatestTopics,
   fetchPostsForTopic,
   fetchTopicWithPosts,

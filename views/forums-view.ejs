@@ -102,74 +102,41 @@
         </div>
       </div>
     </nav>
-    <!-- Community Section -->
-    <!-- Main Content -->
+    <!-- Forums Section -->
     <div class="container" id="content">
-      <!-- Stack Overflow Questions Section -->
-      <div class="stack-overflow-section page-section">
+      <!-- List of forums -->
+      <div class="forum-section page-section">
         <div class="section-title-banner">
-          <h3>Stack Overflow Questions</h3>
+          <h3>Forums</h3>
         </div>
 
-        <!-- List of Stack Overflow questions -->
+        <!-- List of forums -->
         <ul>
-          <% stackOverflowQuestions.forEach(question => { %>
+          <% forums.forEach(forum => { %>
           <li>
-            <a href="<%= question.link %>" target="_blank"
-              ><%= question.title %></a
-            >
+            <a href="/forums/<%= forum.forum_id %>"><%= forum.title %></a>
+
+            <!-- Nested topics for each forum -->
+            <% if (Array.isArray(forum.topics) && forum.topics.length > 0) { %>
+            <ul>
+              <% forum.topics.forEach(topic => { %>
+              <li>
+                <!-- Hyperlink to individual topic view -->
+                <a href="/community/topics/<%= topic.topic_id %>"
+                  ><%= topic.title %></a
+                >
+              </li>
+              <% }) %>
+            </ul>
+            <% } else { %>
+            <p>No topics available for this forum.</p>
+            <% } %>
           </li>
           <% }) %>
         </ul>
-
-        <!-- Forums Section -->
-        <div class="forum-section page-section">
-          <div class="section-title-banner">
-            <h3>Forums</h3>
-          </div>
-          <!-- List of forums -->
-          <ul>
-            <% forums.forEach(forum => { %>
-            <li>
-              <div class="forum-info">
-                <h4><%= forum.title %></h4>
-                <p><%= forum.description %></p>
-              </div>
-            </li>
-            <% }) %>
-          </ul>
-        </div>
+        <br />
+        <a href="/community" class="btn btn-primary">Back to Community</a>
       </div>
-      <!-- Forum Button Section -->
-      <div class="forum-button-section">
-        <button class="btn btn-primary" onclick="goToForums()">
-          Go to Forums
-        </button>
-      </div>
-      <!-- Topics Section -->
-      <div class="topics-section page-section">
-        <div class="section-title-banner">
-          <h3>Topics</h3>
-        </div>
-        <!-- List of topics -->
-        <ul>
-          <% latestTopics.forEach(topic => { %>
-          <li>
-            <div class="topic-info">
-              <h4><%= topic.title %></h4>
-              <p><%= topic.description %></p>
-            </div>
-          </li>
-          <% }) %>
-        </ul>
-      </div>
-
-      <script>
-        // Function to navigate to forums page
-        function goToForums() {
-          window.location.href = "/community/forums";
-        }
-      </script>
     </div>
     <!-- Footer-->
     <footer class="border-top">
