@@ -114,15 +114,16 @@
         <ul>
           <% forums.forEach(forum => { %>
           <li>
-            <a href="/forums/<%= forum.forum_id %>"><%= forum.title %></a>
-
+            <%= forum.title %>
             <!-- Nested topics for each forum -->
             <% if (Array.isArray(forum.topics) && forum.topics.length > 0) { %>
             <ul>
               <% forum.topics.forEach(topic => { %>
               <li>
-                <!-- Hyperlink to individual topic view -->
-                <a href="/community/topics/<%= topic.topic_id %>"
+                <!-- Hyperlink to individual topic view with added class -->
+                <a
+                  href="/community/topics/<%= topic.topic_id %>"
+                  class="topic-link"
                   ><%= topic.title %></a
                 >
               </li>
@@ -182,5 +183,6 @@
     <!-- Include the community.js file -->
     <script src="/js/scripts.js"></script>
     <script src="/js/communityForum.js"></script>
+    <script src="/js/topicRedirection.js"></script>
   </body>
 </html>

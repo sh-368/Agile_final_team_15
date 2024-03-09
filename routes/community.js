@@ -110,8 +110,18 @@ router.get("/forums", async (req, res) => {
 router.get("/topics/:topicId", async (req, res) => {
   const { topicId } = req.params;
   try {
+    let userLoggedIn = authMiddleware.isAuthenticatedMisc(
+      req.session.cookie.isAuthenticated
+    );
     const { topic, posts } = await forumService.fetchTopicWithPosts(topicId);
-    res.render("topic-view", { topicId, topic, posts, utils });
+    res.render("topic-view", {
+      topicId,
+      topic,
+      posts,
+      utils,
+      userLoggedIn,
+      userId: req.session.userId,
+    });
   } catch (error) {
     console.error(`Error fetching topic ${topicId}:`, error.message);
     res.status(500).json({ error: "Internal Server Error" });
@@ -123,6 +133,9 @@ router.post("/forums/:forumId/topics/:topicId/posts", async (req, res) => {
   const { forumId, topicId } = req.params;
   const { text, authorId } = req.body;
   try {
+    let userLoggedIn = authMiddleware.isAuthenticatedMisc(
+      req.session.cookie.isAuthenticated
+    );
     // Call the function to add the post to the database
     await forumService.addPostToTopic(
       topicId,

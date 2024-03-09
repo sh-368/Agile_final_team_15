@@ -134,7 +134,7 @@ INSERT INTO forums (title, description) VALUES
 
 -- Insert dummy topics for the Computer Science forum
 INSERT INTO topics (title, content, created_at, publication_date, author_id, forum_id) VALUES
-  ('Algorithms in Python', 'Discuss various algorithms implemented in Python', '2024-03-06', '2024-03-06', 1, 1),
+  ('Algorithms in Python', 'Discuss various algorithms implemented in Python', '2023-07-19', '2024-03-06', 1, 1),
   ('Machine Learning Basics', 'Introduction to machine learning concepts', '2024-03-06', '2024-03-06', 1, 2),
   ('Web Development Trends', 'Latest trends and technologies in web development', '2024-03-06', '2024-03-06', 1, 3);
 
