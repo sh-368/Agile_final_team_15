@@ -20,8 +20,9 @@ Ensure the following dependencies are installed on your system:
 
 To install Node packages, execute the following command from the project directory:
 
-```bash
+<!-- ```bash -->
 npm install
+
 ## Navigating Node SQLite3
 
 While Node SQLite3 may differ in some aspects from MySQL, the fundamental concepts remain consistent. Refer to the following resources for guidance:
