@@ -1,68 +1,90 @@
 https://docs.google.com/document/d/1CCGiZbU7r11pg6GEvsVHNuLEW8w9K8XsbCyCe_KkGC8/edit?resourcekey=0-alQZr4yI3vB_DF5wCPEMtw&tab=t.0#heading=h.hc18gxedosej
 
-## Coursework Template
+# CS Students Hub - Final Report
 
-### CM2040 Database Networks and the Web
+## Project Overview
 
-#### Installation requirements
+Welcome to the CS Students Hub, a collaborative platform meticulously crafted to support and empower computer science students throughout their academic journey. This section provides comprehensive information on setting up, utilizing, and understanding the CS Students Hub, specifically tailored for the CM2040 Database Networks and the Web coursework.
 
-- NodeJS
-  - follow the install instructions at https://nodejs.org/en/
-  - we recommend using the latest LTS version
-- Sqlite3
-  - Windows users: follow instructions here https://www.sqlitetutorial.net/download-install-sqlite/
-  - Mac users: it comes preinstalled
-  - Linux users: use a package manager eg. apt install
+## Installation Requirements
 
-To install all the node packages run `npm install` from the project directory
+Ensure the following dependencies are installed on your system:
 
-#### Help with node SQLite3
+- **NodeJS**
+  - Installation: [Node.js Website](https://nodejs.org/en/)
+  - Recommended: Use the latest LTS version
+- **SQLite3**
+  - Windows users: Follow instructions [here](https://www.sqlitetutorial.net/download-install-sqlite/)
+  - Mac users: Preinstalled
+  - Linux users: Use a package manager (e.g., `apt install sqlite3`)
 
-A few aspects SQLite3 work a little differently to mySql but all of the key concepts are the same
+To install Node packages, execute the following command from the project directory:
 
-Find the API documentation at:
-https://github.com/TryGhost/node-sqlite3/wiki/API
+```bash
+npm install
+## Navigating Node SQLite3
 
-Find node SQLite tutorials at:
-https://www.sqlitetutorial.net/sqlite-nodejs/
-This also a good resource to find examples and tutorials around SQLite queries
+While Node SQLite3 may differ in some aspects from MySQL, the fundamental concepts remain consistent. Refer to the following resources for guidance:
 
-#### Using this template
+- **API Documentation**
+- [SQLite Tutorials](https://www.sqlitetutorial.net/sqlite-nodejs/) (Featuring examples and tutorials around SQLite queries)
 
-This template sets you off in the right direction for your coursework. To get started:
+## Utilizing this Template
 
-Run `npm run build-db` to create the database (database.db)
-Run `npm run start` to start serving the web app (Access via http://localhost:3000)
+This template forms the bedrock for your coursework. Follow these steps to commence:
 
-You can also run:
-`npm run clean-db` to delete the database before rebuilding it for a fresh start
+1. Run `npm run build-db` to instantiate the database (`database.db`).
+2. Run `npm run start` to activate the web app (Accessible via [http://localhost:3000](http://localhost:3000)).
 
-##### Next steps
+Additional commands:
 
-- Explore the file structure and code
-- Read all the comments
-- Try accessing each of the routes via the browser - make sure you understand what they do
-- Try creating ejs pages for each of the routes that retrieve and display the data
-- Try enhancing the `create-user-record` page so that you can set the text in the record
-- Try adding new routes and pages to let the user create their own records
+- `npm run clean-db`: Eradicate the database for a pristine start.
 
-##### Creating database tables
+## Progressing Forward
 
-- All database tables should created by modifying the db_schema.sql
-- This allows us to review and recreate your database simply by running `npm run build-db`
-- Do NOT create or alter database tables through other means
+- Dive into the file structure and code intricacies.
+- Assimilate insights from comments throughout the codebase.
+- Access each route via the browser for a nuanced understanding of its functionality.
+- Construct EJS pages for each route to retrieve and display data.
+- Elevate the `create-user-record` page to enable text configuration in the record.
+- Extend functionality by adding new routes and pages for users to create personalized records.
 
-#### Preparing for submission
+## Crafting Database Tables
 
-Make a copy of this folder
-In your copy, delete the following files and folders:
-_ node_modules
-_ .git (the hidden folder with your git repository) \* database.db (your database)
+All database tables should be sculpted by modifying `db_schema.sql`. This practice facilitates comprehensive review and recreation of your database by executing `npm run build-db`. Strictly avoid creating or modifying database tables through alternative means.
 
-Make sure that your package.json file includes all of the dependencies for your project NB. you need to use the `--save` tag each time you use npm to install a dependency
+## Preparing for Immaculate Submission
 
-#### Getting started with my project
+Before submission, replicate this folder and eliminate the following files and folders:
 
-Edit this section to include any settings that should be adjusted in configuration files and concise instructions for how to access the reader and author pages once the app is running.
+- `node_modules`
+- `.git` (The hidden folder housing your git repository)
+- `database.db` (Your database)
 
-NB. we will ONLY run `npm install`, `npm run build-db`, and `npm run start` . We will NOT install additional packages to run your code and will NOT run additional build scripts. Be careful with any additional node dependencies that you use.
+Verify that your `package.json` file encompasses all dependencies for your project. Append the `--save` tag each time npm installs a dependency.
+
+## Initiating Your Project
+
+Refine this section to encompass essential settings for configuration files and provide concise instructions for accessing reader and author pages once the app is operational.
+
+**Note**: We will ONLY execute `npm install`, `npm run build-db`, and `npm run start`. Additional package installations or running supplementary build scripts are expressly forbidden. Exercise caution when incorporating additional node dependencies.
+
+# API Integration Overview
+
+Our CS Student Hub utilizes several external APIs to enhance the user experience and provide valuable features. Below is a brief overview of the APIs integrated into our platform:
+
+## YouTube API (`YOUTUBE_API_KEY`)
+
+The [YouTube API](https://developers.google.com/youtube/v3), powered by Google, enables seamless integration of educational videos and content directly into our platform. This feature allows users to access a curated selection of instructional videos, tutorials, and lectures, enhancing the learning experience with visual and auditory aids.
+
+## Google Books API (`GOOGLE_BOOKS_API_KEY`)
+
+The [Google Books API](https://developers.google.com/books), empowers our platform to offer a comprehensive library of relevant books and study materials. Users can explore, search, and discover a wealth of literary resources, making our hub a one-stop destination for academic and reference materials.
+
+## Unsplash API (`UNSPLASH_API_KEY`)
+
+The [Unsplash API](https://unsplash.com/developers) enriches the visual aspect of our platform by providing high-quality and diverse images related to computer science and technology. This integration enhances the overall aesthetics of the hub, creating an engaging and visually appealing learning environment.
+
+## Google Custom Search API (`GOOGLE_SEARCH_ENGINE_ID`, `GOOGLE_API_KEY`)
+
+The [Google Custom Search API](https://developers.google.com/custom-search) is employed to offer an efficient and tailored search experience within our platform. Users can easily search for specific topics, articles, and tutorials, streamlining the process of discovering relevant information. The integration enhances the overall accessibility of resources.
