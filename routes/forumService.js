@@ -9,8 +9,7 @@ function fetchForumsWithTopics() {
         f.title AS forum_title,
         f.description AS forum_description,
         t.topic_id,
-        t.title AS topic_title,
-        u.name as authorName 
+        t.title AS topic_title
       FROM
         forums f
       LEFT JOIN
