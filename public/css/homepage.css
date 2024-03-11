@@ -8,6 +8,27 @@
     --link-color: white;
     --intro-bg-color: #007bff;
     --lighter-night-bg-color: #404040;
+    --cb-background-color: #c0c0c0; 
+    --cb-text-color: #000;
+    --cb-navbar-color: #c2c2c2;
+    --cb-btn-bg-color: #6b6b6b;
+    --cb-btn-hover-bg-color: #858585;
+    --cb-card-bg-color: #c7c7c7;
+    --cb-link-color: #000;
+    --cb-intro-bg-color: #f2f2f2;
+    --cb-lighter-bg-color: #d6d6d6;
+}
+
+.colorblind-mode {
+    --background-color: var(--cb-background-color);
+    --text-color: var(--cb-text-color);
+    --navbar-color: var(--cb-navbar-color);
+    --btn-bg-color: var(--cb-btn-bg-color);
+    --btn-hover-bg-color: var(--cb-btn-hover-bg-color);
+    --card-bg-color: var(--cb-card-bg-color);
+    --link-color: var(--cb-link-color);
+    --intro-bg-color: var(--cb-intro-bg-color);
+    --lighter-night-bg-color: var(--cb-lighter-bg-color);
 }
 
 body.night-mode {
@@ -292,7 +313,7 @@ h3 {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-/* Additional styles for consistent spacing and alignment */
+
 .latest-articles-section .card {
     margin-bottom: 2%;
     width: 25%;
@@ -310,16 +331,43 @@ h3 {
     align-self: flex-end;
 }
 
-/* Styles for colorblind mode */
-.colorblind-mode body {
-    /* Adjusted background color for colorblind users */
-    background-color: #e0e0e0;
+.navbar, .navbar-night, .colorblind-mode .navbar {
+    background-color: var(--navbar-color) !important;
 }
 
-.colorblind-mode .button {
-    /* Adjusted button color for colorblind users */
-    background-color: #FFFFFF;
-    color: #000000;
+.introduction-section, .introduction-section-night, .colorblind-mode .introduction-section {
+    background-color: var(--intro-bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.colorblind-mode .latest-section .section-title-banner > h3,
+.colorblind-mode .best-study-tools-section .section-title-banner > h3 {
+    background-color: var(--cb-lighter-bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.colorblind-mode .latest-articles-section .card, 
+.colorblind-mode .best-study-tools-section .card {
+    background-color: var(--cb-card-bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.colorblind-mode .latest-articles-section .card .card-title,
+.colorblind-mode .latest-articles-section .card .card-text,
+.colorblind-mode .best-study-tools-section .card .card-title,
+.colorblind-mode .best-study-tools-section .card .card-text {
+    color: var(--text-color) !important;
+}
+
+.colorblind-mode .latest-articles-section .card .btn, 
+.colorblind-mode .best-study-tools-section .card .btn {
+    background-color: var(--btn-bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.colorblind-mode .latest-articles-section .card .btn:hover, 
+.colorblind-mode .best-study-tools-section .card .btn:hover {
+    background-color: var(--btn-hover-bg-color) !important;
 }
 
 .night-mode-toggle {
@@ -342,8 +390,6 @@ h3 {
 
 .best-study-tools-section .card-deck {
     display: flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-around; */
 }
 
 .best-study-tools-section .card-img-top {

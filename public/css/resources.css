@@ -8,6 +8,36 @@
     --link-color: white;
     --lighter-night-bg-color: #404040;
     --section-title-bg-color: #52CBFF;
+    --cb-background-color: #e0e0e0;
+    --cb-text-color: #000;
+    --cb-navbar-color: #f2f2f2;
+    --cb-btn-bg-color: #6b6b6b;
+    --cb-btn-hover-bg-color: #858585;
+    --cb-card-bg-color: #c7c7c7;
+    --cb-link-color: #000;
+    --cb-intro-bg-color: #f2f2f2;
+    --cb-lighter-bg-color: #d6d6d6;
+    --cb-background-color: #e0e0e0;
+    --cb-text-color: #000;
+    --cb-navbar-color: #c2c2c2;
+    --cb-btn-bg-color: #6b6b6b;
+    --cb-btn-hover-bg-color: #858585;
+    --cb-card-bg-color: #c7c7c7; 
+    --cb-link-color: #000;
+    --cb-intro-bg-color: #f2f2f2;
+    --cb-lighter-bg-color: #d6d6d6;
+}
+
+.colorblind-mode {
+    --background-color: var(--cb-background-color);
+    --text-color: var(--cb-text-color);
+    --navbar-color: var(--cb-navbar-color);
+    --btn-bg-color: var(--cb-btn-bg-color);
+    --btn-hover-bg-color: var(--cb-btn-hover-bg-color);
+    --card-bg-color: var(--cb-card-bg-color);
+    --link-color: var(--cb-link-color);
+    --intro-bg-color: var(--cb-intro-bg-color);
+    --lighter-night-bg-color: var(--cb-lighter-bg-color);
 }
 
 body.night-mode {
