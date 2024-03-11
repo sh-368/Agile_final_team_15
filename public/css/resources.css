@@ -1,7 +1,26 @@
+:root {
+    --background-color: white;
+    --text-color: #333;
+    --navbar-color: #007bff;
+    --btn-bg-color: #007bff;
+    --btn-hover-bg-color: #0056b3;
+    --card-bg-color: #93acbe;
+    --link-color: white;
+}
 
+body.night-mode {
+    --background-color: #333333;
+    --text-color: #fff;
+    --navbar-color: #301934;
+    --btn-bg-color: purple;
+    --btn-hover-bg-color: purple;
+    --card-bg-color: #666666;
+    --link-color: #fff;
+}
 
 body {
-    background-color: #cedceb;
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -34,9 +53,8 @@ body {
     margin-right: 10px;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: #333;
+.nav-link, .navbar-night .nav-link {
+    color: var(--link-color) !important;
 }
 
 .nav-logo {
@@ -45,18 +63,18 @@ body {
     object-fit: scale-down;
 }
 
-.btn {
+.btn, .btn-night {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--btn-bg-color) !important;
     color: #fff;
     border: none;
     border-radius: 4px;
     text-decoration: none;
 }
 
-.btn:hover {
-    background-color: #0056b3;
+.btn:hover, .btn-night:hover {
+    background-color: var(--btn-hover-bg-color) !important;
 }
 
 .action-buttons {
@@ -128,7 +146,8 @@ body {
     background-color: #218838;
 }
 
-.card {
+.card, .nightbar-night .card{
+    background-color: var(--card-bg-color) !important;
     margin-right: 3%;
     padding: 2%;
     width: 100%;
@@ -159,9 +178,9 @@ body {
     margin-left: 70%important;
 }
 
-.navbar {
+.navbar, .navbar-night {
     /* background-color: #52CBFF !important; */
-    background-color: #007bff !important;
+    background-color: var(--navbar-color) !important;
 }
 .latest-section {
     margin-top: 30px;

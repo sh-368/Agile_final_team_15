@@ -1,10 +1,31 @@
+:root {
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+    --navbar-color: #007bff;
+    --btn-bg-color: #007bff;
+    --btn-hover-bg-color: #0056b3;
+    --card-bg-color: #93acbe;
+    --link-color: white;
+    --intro-bg-color: #007bff;
+}
+
+body.night-mode {
+    --background-color: #333333;
+    --text-color: #fff;
+    --navbar-color: #301934;
+    --btn-bg-color: purple;
+    --btn-hover-bg-color: purple;
+    --card-bg-color: #666666;
+    --link-color: #fff;
+    --intro-bg-color: #301934;
+}
+
 body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-
-    background-color: #f5f5f5;
-    color: #333333;
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
 }
 
 .blog-title {
@@ -38,7 +59,7 @@ body {
 
 .nav-link {
     text-decoration: none;
-    color: #333;
+    color: var(--link-color) !important;
 }
 
 .nav-logo {
@@ -50,7 +71,7 @@ body {
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--btn-bg-color) !important;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -58,7 +79,7 @@ body {
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: var(--btn-hover-bg-color) !important;
 }
 
 .btn-night {
@@ -153,7 +174,7 @@ body {
 }
 
 .card .card-bg-color {
-    background-color: #666666 !important;
+    background-color: var(--card-bg-color) !important;
 }
 
 .read-more {
@@ -192,12 +213,13 @@ body {
     margin-left: 70%important;
 }
 
-.navbar{
+.navbar {
     transition: all 0.3s ease;
     position: fixed;
     top: 0;
-    background-color: #007bff !important;
+    background-color: var(--navbar-color) !important;
 }
+
 .latest-section {
     margin-top: 30px;
 }
@@ -329,7 +351,7 @@ h3 {
 }
 
 .introduction-section {
-    background-color: #007bff;
+    background-color: var(--intro-bg-color) !important;
     color: #fff;
     padding: 1rem;
     margin: 1rem;
