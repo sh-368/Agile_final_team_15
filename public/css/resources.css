@@ -6,6 +6,8 @@
     --btn-hover-bg-color: #0056b3;
     --card-bg-color: #93acbe;
     --link-color: white;
+    --lighter-night-bg-color: #404040;
+    --section-title-bg-color: #52CBFF;
 }
 
 body.night-mode {
@@ -16,14 +18,31 @@ body.night-mode {
     --btn-hover-bg-color: purple;
     --card-bg-color: #666666;
     --link-color: #fff;
+    --lighter-night-bg-color: #404040;
+    --section-title-bg-color: #301934;
 }
-
 body {
     background-color: var(--background-color) !important;
     color: var(--text-color) !important;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+body.night-mode .latest-section .section-title-banner > h3,
+body.night-mode .latest-section .card {
+    background-color: var(--lighter-night-bg-color) !important;
+    color: #fff !important;
+}
+
+body.night-mode .latest-section .card .btn {
+    background-color: var(--btn-bg-color) !important;
+    color: #fff !important;
+}
+
+body.night-mode .latest-section .section-title-banner > h3 {
+    background-color: var(--section-title-bg-color) !important;
+    color: #fff !important;
 }
 
 .blog-title {

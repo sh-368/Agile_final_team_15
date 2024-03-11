@@ -7,6 +7,7 @@
     --card-bg-color: #93acbe;
     --link-color: white;
     --intro-bg-color: #007bff;
+    --lighter-night-bg-color: #404040;
 }
 
 body.night-mode {
@@ -18,7 +19,40 @@ body.night-mode {
     --card-bg-color: #666666;
     --link-color: #fff;
     --intro-bg-color: #301934;
+    --lighter-night-bg-color: #404040;
 }
+
+body.night-mode .latest-section .section-title-banner>h3,
+body.night-mode .best-study-tools-section .section-title-banner>h3 {
+    color: #fff;
+    background-color: var(--navbar-color) !important;
+}
+
+body.night-mode .latest-articles-section .card, 
+body.night-mode .best-study-tools-section .card {
+    background-color: var(--lighter-night-bg-color) !important;
+    color: #fff;
+}
+
+body.night-mode .latest-articles-section .card .card-title,
+body.night-mode .latest-articles-section .card .card-text,
+body.night-mode .best-study-tools-section .card .card-title,
+body.night-mode .best-study-tools-section .card .card-text {
+    color: #fff;
+}
+
+body.night-mode .latest-articles-section .card .btn, 
+body.night-mode .best-study-tools-section .card .btn {
+    background-color: var(--btn-bg-color) !important;
+    color: #fff;
+}
+
+body.night-mode .latest-articles-section .card .btn:hover, 
+body.night-mode .best-study-tools-section .card .btn:hover {
+    background-color: var(--btn-hover-bg-color) !important;
+}
+
+
 
 body {
     background-size: cover;
